@@ -15,13 +15,13 @@ export default function Setupbasic({onNext, onPrev}){
     items = {cat.items}
     key={cat.name} 
     title={cat.name}
-    size = "large"
+    size = "small"
     />
     <CategoryButton 
     items = {cat2.items}
     key={cat2.name} 
     title={cat2.name}
-    size = "large"
+    size = "medium"
     />
     <CategoryButton 
     items = {cat3.items}
