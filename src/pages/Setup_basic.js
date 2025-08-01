@@ -1,5 +1,6 @@
 import CategoryButton from "../components/CategoryButton";
 import GotoButton from "../components/GotoButton";
+import './Page.css';
 
 export default function Setupbasic({onNext, onPrev}){
 
@@ -9,19 +10,19 @@ export default function Setupbasic({onNext, onPrev}){
   
 
   return(
-    <>
+    <div className = "setup-page">
     <h1> 머니코치에 오신 것을 환영합니다. </h1>
     <CategoryButton 
     items = {cat.items}
     key={cat.name} 
     title={cat.name}
-    size = "small"
+    size = "large"
     />
     <CategoryButton 
     items = {cat2.items}
     key={cat2.name} 
     title={cat2.name}
-    size = "medium"
+    size = "large"
     />
     <CategoryButton 
     items = {cat3.items}
@@ -29,10 +30,12 @@ export default function Setupbasic({onNext, onPrev}){
     title={cat3.name}
     size = "large"
     />
-    <div className = 'goto-container'>
-        <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
-        <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+    <div className="nav-buttons">
+      <div className = 'goto-container'>
+          <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
+          <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

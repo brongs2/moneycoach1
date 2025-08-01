@@ -6,6 +6,8 @@ html, body {
     height: 100vh;
 }
 
+
+
 .category-container {
   display: flex;
   flex-direction: column; /* 버튼들이 위아래로 나열되도록 */
@@ -61,34 +63,8 @@ html, body {
   pointer-events: none;
 }
 
-h1{
-  color: #333;
-  margin-left: 30px;
-  text-align: left;
-  font-size: 36px;
-  font-family: "Pretendard";
-  font-weight: 800;
-}
 
-h2{
-  color: #333;
-  margin-left: 30px;
-  text-align: left;
-  font-size: 32px;
-  font-family: "Pretendard";
-  font-weight: 500;
-}
-/* Button{
-    
-    padding: 10px;
-    background-color: #ffffff;
-    border: 2px solid #000;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: "Pretendard";
-    font-weight: 600;
-    font-size: 24px;
-} */
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

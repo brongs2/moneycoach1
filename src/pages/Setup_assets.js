@@ -2,6 +2,8 @@ import AssetButton from "../components/Assetbutton";
 import GotoButton from "../components/GotoButton";
 import {useState} from 'react';
 import { FaPiggyBank, FaChartLine, FaGem, FaArrowDown } from 'react-icons/fa';
+import './Page.css'
+
 
 
 export default function Setupassets({onPrev, onNext}){
@@ -17,40 +19,43 @@ export default function Setupassets({onPrev, onNext}){
     }
   };
     return (
-        
-    <div style={{background: '#eee', height: '100vh' }}>
-      <h1> 가지고 있는 자산을 모두 체크해주세요 </h1>
-      <AssetButton
-        icon={<FaPiggyBank />}
-        title="저축"
-        description="가지고 있는 현금, 예금 등의 현금성 자산"
-        isSelected={selectedList.includes('저축')}
-        onClick={() => toggleSelection('저축')}
-      />
-      <AssetButton
-        icon={<FaChartLine />}
-        title="투자"
-        description="주식, 부동산, 암호화폐 등 투자성 자산"
-        isSelected={selectedList.includes('투자')}
-        onClick={() => toggleSelection('투자')}
-      />
-      <AssetButton
-        icon={<FaGem />}
-        title="유형자산"
-        description="보석, 미술품 등 실물 자산"
-        isSelected={selectedList.includes('유형자산')}
-        onClick={() => toggleSelection('유형자산')}
-      />
-      <AssetButton
-        icon={<FaArrowDown />}
-        title="부채"
-        description="학자금 대출, 신용 대출 등 부채"
-        isSelected={selectedList.includes('부채')}
-        onClick={() => toggleSelection('부채')}
-      />
-      <div className = 'goto-container'>
-        <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
-        <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+    <div className="setup-page">
+      <div style={{background: '#eee', height: '100vh' }}>
+        <h1> 가지고 있는 자산을 모두 체크해주세요 </h1>
+        <AssetButton
+          icon={<FaPiggyBank />}
+          title="저축"
+          description="가지고 있는 현금, 예금 등의 현금성 자산"
+          isSelected={selectedList.includes('저축')}
+          onClick={() => toggleSelection('저축')}
+        />
+        <AssetButton
+          icon={<FaChartLine />}
+          title="투자"
+          description="주식, 부동산, 암호화폐 등 투자성 자산"
+          isSelected={selectedList.includes('투자')}
+          onClick={() => toggleSelection('투자')}
+        />
+        <AssetButton
+          icon={<FaGem />}
+          title="유형자산"
+          description="보석, 미술품 등 실물 자산"
+          isSelected={selectedList.includes('유형자산')}
+          onClick={() => toggleSelection('유형자산')}
+        />
+        <AssetButton
+          icon={<FaArrowDown />}
+          title="부채"
+          description="학자금 대출, 신용 대출 등 부채"
+          isSelected={selectedList.includes('부채')}
+          onClick={() => toggleSelection('부채')}
+        />
+         <div className="nav-buttons">
+          <div className = 'goto-container'>
+            <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
+            <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+          </div>
+        </div>
       </div>
     </div>
   );

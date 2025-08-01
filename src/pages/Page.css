@@ -1,6 +1,43 @@
 .input-group {
   display: flex;
+  
+  
+  background-color: #ffffff;
+  color: #000000;
+
+  cursor: pointer;
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-size: 24px;
+  text-align: left;
   align-items: center;     /* 세 요소 수직 중앙 정렬 */
-  gap: 8px;                /* 요소 간 간격 */
+  gap: 20px;              /* 버튼들 간의 간격 */
+  padding: 30px 20px;       /* 좌우 여백 */
   margin-bottom: 12px;
+}
+
+.setup-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 화면 세로 전체 확보 */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1{
+  color: #333;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 36px;
+  font-family: "Pretendard";
+  font-weight: 800;
+}
+
+h2{
+  color: #333;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 32px;
+  font-family: "Pretendard";
+  font-weight: 500;
 }
