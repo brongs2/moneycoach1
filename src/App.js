@@ -3,16 +3,12 @@ import Setupbasic from './pages/Setup_basic';
 import Setupassets from './pages/Setup_assets';
 import Setupsaving from './pages/Setup_savings'; 
 import {useState} from 'react';
-
+import Setup from './pages/Setup';
 
 
 export default function MyApp() {
-  const [state, setState] = useState(0);
   return (
-    <div>
-      {state === 0 && <Setupbasic onNext = {() => setState(1)} onPrev = {() => setState(0)} />}
-      {state === 1 && <Setupassets onNext = {() => setState(2)} onPrev = {() => setState(0)} />}
-      {state === 2 && <Setupsaving onNext = {() => setState(3)} onPrev = {() => setState(1)} /> }
-    </div>
+    <Setup/>
+    // <Plan/>
   );
 }
