@@ -1,4 +1,7 @@
 import CategoryButton from "../components/CategoryButton";
+import GotoButton from "../components/GotoButton";
+
+
 import { useState } from "react";
 import GotoButton from "../components/GotoButton";
 export default function Setupsaving({ onPrev, onNext }) {
