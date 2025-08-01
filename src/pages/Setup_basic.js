@@ -27,10 +27,9 @@ export default function Setupbasic({onNext, onPrev}){
     title={cat3.name}
     />
     <>
-      <GotoButton onClick = {onPrev}>이전</GotoButton> 
-      <GotoButton onClick = {onNext}>다음</GotoButton>
+    <button onClick = {onPrev}>이전</button> 
+    <button onClick = {onNext}>다음</button>
     </>
     </>
   );
-
 }
