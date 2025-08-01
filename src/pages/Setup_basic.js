@@ -26,10 +26,11 @@ export default function Setupbasic({onNext, onPrev}){
     key={cat3.name} 
     title={cat3.name}
     />
-    <>
-    <button onClick = {onPrev}>이전</button> 
-    <button onClick = {onNext}>다음</button>
-    </>
+    <div className = 'goto-container'>
+            <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
+            <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+    </div>
+  
     </>
   );
 }
