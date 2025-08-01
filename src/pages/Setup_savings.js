@@ -1,6 +1,6 @@
 import CategoryButton from "../components/CategoryButton";
 import GotoButton from "../components/GotoButton";
-
+import './Page.css'
 
 import { useState } from "react";
 export default function Setupsaving({ onPrev, onNext }) {
@@ -9,7 +9,7 @@ export default function Setupsaving({ onPrev, onNext }) {
 
   return (
     <div className="container">
-      <h1 className="title">
+      <h1>
         어떤 방식으로<br />
         저축하고 있나요?
       </h1>
@@ -19,6 +19,7 @@ export default function Setupsaving({ onPrev, onNext }) {
         <CategoryButton
           items={['일반 예금', '정기 예금', '적금']}
           title=""
+          size = "medium"
         />
 
         <input
@@ -32,6 +33,7 @@ export default function Setupsaving({ onPrev, onNext }) {
         <CategoryButton
           items={['₩', '$', '€']}
           title=""
+          size = "small"
         />
       </div>
 
