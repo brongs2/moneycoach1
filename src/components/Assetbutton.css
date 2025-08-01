@@ -1,0 +1,30 @@
+.asset-button {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.asset-button.selected {
+  background: #d6e4ff; /* 선택됐을 때의 색상 */
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.description {
+  font-size: 12px;
+  color: #555;
+}
