@@ -4,3 +4,14 @@
   gap: 8px;                /* 요소 간 간격 */
   margin-bottom: 12px;
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.goto-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto; /* 하단 고정 효과 */
+  padding-top: 40px;
+}

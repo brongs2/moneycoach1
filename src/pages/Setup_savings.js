@@ -10,8 +10,7 @@ export default function Setupsaving({ onPrev, onNext }) {
   return (
     <div className="container">
       <h1>
-        어떤 방식으로<br />
-        저축하고 있나요?
+        어떤 방식으로 저축하고 있나요?
       </h1>
 
       <div className="input-group">
