@@ -1,6 +1,7 @@
 import './App.css';
 import Setupbasic from './pages/Setup_basic';
 import Setupassets from './pages/Setup_assets';
+import Setupsaving from './pages/Setup_savings'; 
 import {useState} from 'react';
 
 export default function MyApp() {
@@ -9,6 +10,7 @@ export default function MyApp() {
     <div>
       {state === 0 && <Setupbasic onNext = {() => setState(1)} onPrev = {() => setState(0)} />}
       {state === 1 && <Setupassets onNext = {() => setState(2)} onPrev = {() => setState(0)} />}
+      {state === 2 && <Setupsaving onNext = {() => setState(2)} onPrev = {() => setState(0)} /> }
     </div>
   );
 }

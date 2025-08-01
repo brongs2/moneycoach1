@@ -1,34 +1,29 @@
 import CategoryButton from "../components/CategoryButton";
-export default function Setupbasic({onNext, onPrev}){
 
-  const cat =  { name: "음악", items: ["K-POP", "락", "재즈"]};
-  const cat2 =  { name: "음악", items: ["K-POP", "락", "재즈"]};
-  const cat3 =  { name: "음악", items: ["K-POP", "락", "재즈"]};
-  
+export default function Setupbasic({ onNext, onPrev }) {
+  const categories = [
+    { name: "음악", items: ["K-POP", "락", "재즈"] },
+    { name: "영화", items: ["액션", "로맨스", "코미디"] },
+    { name: "운동", items: ["헬스", "요가", "러닝"] },
+  ];
 
-  return(
-    <>
-    <h1> 머니코치에 오신 것을 환영합니다. </h1>
-    <CategoryButton 
-    items = {cat.items}
-    key={cat.name} 
-    title={cat.name}
-    />
-    <CategoryButton 
-    items = {cat2.items}
-    key={cat2.name} 
-    title={cat2.name}
-    />
-    <CategoryButton 
-    items = {cat3.items}
-    key={cat3.name} 
-    title={cat3.name}
-    />
-    <>
-    <button onClick = {onPrev}>이전</button> 
-    <button onClick = {onNext}>다음</button>
-    </>
-    </>
+  return (
+    <div style={{ padding: "30px" }}>
+      <h1>머니코치에 오신 것을 환영합니다.</h1>
+
+      {categories.map((cat, index) => (
+        <CategoryButton
+          key={index}
+          items={cat.items}
+          title={cat.name}
+          size = "large"
+        />
+      ))}
+
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "40px" }}>
+        <button onClick={onPrev}>← 이전</button>
+        <button onClick={onNext}>다음 →</button>
+      </div>
+    </div>
   );
-
 }
