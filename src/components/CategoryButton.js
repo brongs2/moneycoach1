@@ -12,7 +12,6 @@ export default function CategoryButton({ items, title, size = 'medium', onSelect
         className={className}
         onClick={onClick}
         value={value}
-        size = "large"
       >
         {children}
       </button>

@@ -1,6 +1,7 @@
 import CategoryButton from "../components/CategoryButton";
 import { useState } from "react";
-export default function Setupsaving({ onNext, onPrev }) {
+import GotoButton from "../components/GotoButton";
+export default function Setupsaving({ onPrev, onNext }) {
   const [amount, setAmount] = useState('');
   const [currency, setCurrency] = useState('₩');
 
@@ -34,16 +35,10 @@ export default function Setupsaving({ onNext, onPrev }) {
 
       <p className="add-link">+ 저축 종류 추가하기</p>
 
-      <div className="bottom">
-        <button className="next-button" onClick={onNext}>
-          다음 →
-        </button>
-
-        <div className="hint">
-          <span className="icon">❓</span>
-          어떤 저축을 하고 있는지 잘 모르겠어요
+        <div className = 'goto-container'>
+            <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
+            <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
         </div>
-      </div>
     </div>
   );
 }
