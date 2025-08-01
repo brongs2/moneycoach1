@@ -9,7 +9,7 @@ html, body {
 .category-container {
   display: flex;
   flex-direction: column; /* 버튼들이 위아래로 나열되도록 */
-  align-items: stretch;    /* 좌측정렬 */
+  align-items: center;    /* 좌측정렬 */
   gap: 20px;              /* 버튼들 간의 간격 */
   padding: 30px;        /* 좌우 여백 */
 

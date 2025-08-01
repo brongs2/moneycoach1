@@ -1,5 +1,7 @@
 import CategoryButton from "../components/CategoryButton";
-export default function Setup_Basic(){
+import GotoButton from "../components/GotoButton";
+
+export default function Setupbasic({onNext, onPrev}){
 
   const cat =  { name: "음악", items: ["K-POP", "락", "재즈"]};
   const cat2 =  { name: "음악", items: ["K-POP", "락", "재즈"]};
@@ -24,7 +26,10 @@ export default function Setup_Basic(){
     key={cat3.name} 
     title={cat3.name}
     />
-    
+    <>
+      <GotoButton onClick = {onPrev}>이전</GotoButton> 
+      <GotoButton onClick = {onNext}>다음</GotoButton>
+    </>
     </>
   );
 

@@ -1,7 +1,8 @@
 import AssetButton from "../components/Assetbutton";
+import GotoButton from "../components/GotoButton";
 import {useState} from 'react';
 import { FaPiggyBank, FaChartLine, FaGem, FaArrowDown } from 'react-icons/fa';
-export default function Setup_assets(){
+export default function Setupassets({onPrev, onNext}){
   const [selectedList, setSelectedList] = useState([]);
 
   const toggleSelection = (title) => {
@@ -16,7 +17,7 @@ export default function Setup_assets(){
     return (
         
     <div style={{ padding: '20px', background: '#eee', height: '100vh' }}>
-        <h1> 가지고 있는 자산을 모두 체크해주세요 </h1>
+      <h1> 가지고 있는 자산을 모두 체크해주세요 </h1>
       <AssetButton
         icon={<FaPiggyBank />}
         title="저축"
@@ -45,6 +46,10 @@ export default function Setup_assets(){
         isSelected={selectedList.includes('부채')}
         onClick={() => toggleSelection('부채')}
       />
+      <div className = 'goto-container'>
+        <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
+        <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+      </div>
     </div>
   );
 }

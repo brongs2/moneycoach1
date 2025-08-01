@@ -1,16 +1,30 @@
 import './GotoButton.css';
 
-export default function GotoButton({ icon, title, description, isSelected, onClick }) {
-  return (
-    <div
-      className='goto-button'
-      onClick={onClick}
-    >
-      <div className="icon">{icon}</div>
-      <div className="text">
-        <div className="title">{title}</div>
-        <div className="description">{description}</div>
-      </div>
-    </div>
-  );
+export default function GotoButton({ onClick, children, variant }) {
+    const variantClass = `goto-button ${variant}`;
+
+    function Button({children, className, onClick, value}){
+        return(
+        <button 
+            className={className} 
+            onClick={onClick} 
+            value={value}
+        >
+            {children} 
+        </button >
+        );
+    }
+
+    
+    return(
+        <Button
+            className = {variantClass}
+            onClick={onClick}
+            children = {children}
+        >
+        {children}
+        </Button>
+    );
 }
+    
+

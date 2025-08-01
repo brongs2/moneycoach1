@@ -1,9 +1,9 @@
-import React from 'react';
+
 import './Assetbutton.css';
 
 export default function AssetButton({ icon, title, description, isSelected, onClick }) {
   return (
-    <button
+    <div
       className={`asset-button ${isSelected ? 'selected' : ''}`}
       onClick={onClick}
     >
