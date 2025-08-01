@@ -1,7 +1,7 @@
 import AssetButton from "../components/Assetbutton";
 import {useState} from 'react';
 import { FaPiggyBank, FaChartLine, FaGem, FaArrowDown } from 'react-icons/fa';
-export default function Setup_assets(){
+export default function Setupassets({onPrev, onNext}){
   const [selectedList, setSelectedList] = useState([]);
 
   const toggleSelection = (title) => {
@@ -45,6 +45,10 @@ export default function Setup_assets(){
         isSelected={selectedList.includes('부채')}
         onClick={() => toggleSelection('부채')}
       />
+          <>
+          <button onClick = {onPrev}>이전</button> 
+          <button onClick = {onNext}>다음</button>
+          </>
     </div>
   );
 }
