@@ -1,10 +1,9 @@
-import React from 'react';
-import './Assetbutton.css';
+import './GotoButton.css';
 
-export default function AssetButton({ icon, title, description, isSelected, onClick }) {
+export default function GotoButton({ icon, title, description, isSelected, onClick }) {
   return (
-    <button
-      className={`asset-button ${isSelected ? 'selected' : ''}`}
+    <div
+      className='goto-button'
       onClick={onClick}
     >
       <div className="icon">{icon}</div>

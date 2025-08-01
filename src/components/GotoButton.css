@@ -1,0 +1,21 @@
+.goto-button{
+    display: flex;
+    flex-direction: column; /* 버튼들이 위아래로 나열되도록 */
+    align-items: stretch;    /* 좌측정렬 */
+    gap: 20px;              /* 버튼들 간의 간격 */
+    padding: 30px;        /* 좌우 여백 */
+
+    margin: 0 auto;
+    width: calc(100vw - 40px);
+
+    background-color: #ffffff;
+    color: #000000;
+
+    border: 2px solid #000;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-size: 24px;
+    text-align: left;
+}
