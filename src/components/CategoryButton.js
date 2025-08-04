@@ -18,7 +18,7 @@ export default function CategoryButton({ items, title, size = 'medium', onSelect
     );
   }
 
-  const sizeClass = `category-${size}`;
+  const sizeClass = `category ${size}`;
 
   const handleSelect = (value) => {
     setSelected(value);
@@ -27,7 +27,7 @@ export default function CategoryButton({ items, title, size = 'medium', onSelect
   };
 
   return (
-    <div style={{ marginBottom: '10px' }}>
+    <div style={{ marginBottom: '10px', position: "relative"}}>
       {title && <h2>{title}</h2>}
 
       <Button
@@ -39,14 +39,14 @@ export default function CategoryButton({ items, title, size = 'medium', onSelect
 
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <motion.div className='category-dropdown'
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            style={{ overflow: 'hidden', margin: '0px 20px', backgroundColor: '#fafafa' }}
+            style={{ overflow: 'hidden', margin: '0px 0px', backgroundColor: '#fafafa' }}
           >
-            <ul style={{ padding: '10px 20px', margin: 0, listStyle: 'none' }}>
+            <ul style={{ padding: '10px 0px', margin: 0, listStyle: 'none' }}>
               {items.map((item) => (
                 <li key={item} style={{ marginBottom: '10px' }}>
                   <motion.button

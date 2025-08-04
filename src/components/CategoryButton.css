@@ -7,11 +7,9 @@ html, body {
 
 .category-trigger {
   display: flex;
-  
-  
   background-color: #ffffff;
   color: #000000;
-
+  position: relative;
   border: 2px solid #000;
   border-radius: 10px;
   cursor: pointer;
@@ -36,13 +34,22 @@ html, body {
   text-align: left;
 }
 
+
+.category-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 .category-option:hover {
   
   background-color: #f2f2f2;
 }
 
 /* 사이즈 대응 */
-.category-small {
+.small {
   flex-direction: column; /* 버튼들이 위아래로 나열되도록 */
   align-items: stretch;    /* 좌측정렬 */
   gap: 20px;              /* 버튼들 간의 간격 */
@@ -57,7 +64,7 @@ html, body {
   text-overflow: ellipsis;
 }
 
-.category-medium {
+.medium {
   flex-direction: column; /* 버튼들이 위아래로 나열되도록 */
   align-items: stretch;    /* 좌측정렬 */
   gap: 20px;              /* 버튼들 간의 간격 */
@@ -72,7 +79,7 @@ html, body {
   text-overflow: ellipsis;
 }
 
-.category-large {
+.large {
   flex-direction: column; /* 버튼들이 위아래로 나열되도록 */
   align-items: stretch;    /* 좌측정렬 */
   gap: 20px;              /* 버튼들 간의 간격 */

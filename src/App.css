@@ -32,23 +32,6 @@ html, body {
 }
 
 
-.category-option{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  background-color: #ffffff;
-  color: #000000;
-
-  cursor: pointer;
-  border: none;
-  font-family: "Pretendard";
-  font-weight: 500;
-  font-size: 24px;
-  text-align: left;
-
-}
-
-
 .App {
   text-align: center;
 }

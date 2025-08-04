@@ -1,12 +1,20 @@
-import CategoryButton from "../components/CategoryButton";
 import GotoButton from "../components/GotoButton";
-import './Page.css'
+import CategoryBundle from "../components/CategoryBundle";
+
+import './Page.css';
 
 import { useState } from "react";
-export default function Setupsaving({ onPrev, onNext }) {
-  const [amount, setAmount] = useState('');
-  const [currency, setCurrency] = useState('₩');
 
+
+export default function Setupsaving({ onPrev, onNext }) {
+  const [currency, setCurrency] = useState('₩');
+  const [savinglists, setSavingLists] = useState([{ id: 1, amount: '' }]);
+  let nextId = 2;  
+    function handleSavings(){
+        setSavingLists(prev => [...prev, { id: nextId++, amount: '' }])
+    }
+
+  
   return (
     <div className = "setup-page">
         <h1>
@@ -14,30 +22,20 @@ export default function Setupsaving({ onPrev, onNext }) {
           저축하고 있나요?
         </h1>
 
-        <div className="input-group">
-          {/* CategoryButton을 저축 종류 선택용으로 사용 */}
-          <CategoryButton
-            items={['일반 예금', '정기 예금', '적금']}
-            title=""
-            size = "medium"
+        {savinglists.map(bundle => (
+          <CategoryBundle
+            key={bundle.id}
+            menuItems={['일반 예금', '정기 예금', '적금']}
+            unitItems={['₩', '$', '€']}
+            amount={bundle.amount}
           />
+        ))}
 
-          <input 
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="amount-input"
-            placeholder="0"
-          />
-
-          <CategoryButton
-            items={['₩', '$', '€']}
-            title=""
-            size = "small"
-          />
-        </div>
-
-        <p className="add-link">+ 저축 종류 추가하기</p>
+        <button 
+                className="add-link"
+                onClick = {handleSavings} 
+            >
+                + 저축 종류 추가하기</button>
         
           <div className="nav-buttons">
             <div className = 'goto-container'>

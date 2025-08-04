@@ -3,6 +3,7 @@ import GotoButton from "../components/GotoButton";
 import {useState} from 'react';
 import { FaPiggyBank, FaChartLine, FaGem, FaArrowDown } from 'react-icons/fa';
 import './Page.css'
+import { Fragment } from 'react';
 
 
 
@@ -19,8 +20,8 @@ export default function Setupassets({onPrev, onNext}){
     }
   };
     return (
-    <div className="setup-page">
-      <div style={{background: '#eee', height: '100vh' }}>
+    <Fragment style={{background: '#eee'}}>
+    <div className="setup-page" >
         <h1> 가지고 있는 자산을 모두 체크해주세요 </h1>
         <AssetButton
           icon={<FaPiggyBank />}
@@ -56,7 +57,7 @@ export default function Setupassets({onPrev, onNext}){
             <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
           </div>
         </div>
-      </div>
     </div>
+    </Fragment>
   );
 }
