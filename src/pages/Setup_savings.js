@@ -1,15 +1,18 @@
 import GotoButton from "../components/GotoButton";
 import CategoryBundle from "../components/CategoryBundle";
+import AddButton from "../components/AddButton";
 
 import './Page.css';
 
 import { useState } from "react";
 
 
-export default function Setupsaving({ onPrev, onNext }) {
-  const [currency, setCurrency] = useState('₩');
+export default function SetupSaving({ onPrev, onNext }) {
   const [savinglists, setSavingLists] = useState([{ id: 1, amount: '' }]);
+
   let nextId = 2;  
+
+
     function handleSavings(){
         setSavingLists(prev => [...prev, { id: nextId++, amount: '' }])
     }
@@ -21,7 +24,7 @@ export default function Setupsaving({ onPrev, onNext }) {
           어떤 방식으로<br />
           저축하고 있나요?
         </h1>
-
+    
         {savinglists.map(bundle => (
           <CategoryBundle
             key={bundle.id}
@@ -31,11 +34,11 @@ export default function Setupsaving({ onPrev, onNext }) {
           />
         ))}
 
-        <button 
+        <AddButton
                 className="add-link"
                 onClick = {handleSavings} 
             >
-                + 저축 종류 추가하기</button>
+                + 저축 종류 추가하기</AddButton>
         
           <div className="nav-buttons">
             <div className = 'goto-container'>
