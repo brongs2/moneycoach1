@@ -6,32 +6,40 @@
   align-items: center;
   gap: 8px;
 }
-.priority-line .remove-goal-button {
+.priority-line .remove-goal-button, .priority-ratio-input {
   margin-left: auto;
 }
+.priority-category {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  cursor: default; /* 클릭은 안되지만 버튼처럼 보이게 */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
 .priority-index {
   font-size: 24px; /* 원하는 크기로 조정 */
   font-weight: bold; /* 선택 사항 */
   margin-right: 4px; /* CategoryButton과 간격 */
 }
-.input-with-suffix {
+.category-display {
+  display: flex;
+  background-color: #ffffff;
+  color: #000000;
   position: relative;
-  display: inline-block;
-}
-
-.input-with-suffix input {
-  /* 오른쪽에 공간을 남겨둡니다 */
-  padding-right: 48px;   /* 접미사 너비 + 여유 */
-  box-sizing: border-box;
-  width: 120px;
-   padding: 8px 48px 8px 12px
-}
-
-.input-with-suffix .suffix {
-  position: absolute;
-  right: 12px;           /* input padding-right 값과 맞춰주세요 */
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;  /* 입력 인터렉션 방해하지 않음 */
-  color: #666;           /* 필요에 따라 색상 조정 */
+  border: 2px solid #000;
+  border-radius: 10px;
+  cursor: default;
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 18px;
+  padding: 12px 16px;
+  text-align: left;
+  width: fit-content;
+  align-items: center;
 }
