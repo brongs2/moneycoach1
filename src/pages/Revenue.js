@@ -89,6 +89,6 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
         </GotoButton>
       </div>
     </div>
-    </>
+   
   );
 }
