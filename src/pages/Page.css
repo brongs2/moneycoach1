@@ -15,8 +15,12 @@
   margin-bottom: 12px;
 }
 
-
-
+.plantitle{
+ color: #868686;
+ margin-left: 20px;
+ font-family: "Pretendard";
+  font-weight: 800;
+}
 h1{
   
   color: #333;

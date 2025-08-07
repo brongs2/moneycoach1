@@ -1,0 +1,80 @@
+.plan-revenue-page {
+  background: #f4f4f4;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 75vh
+}
+.plan-revenue-page h1 {
+  margin-top: 0;
+  margin-left: 5px;
+  margin-bottom: 40px; /* 필요에 따라 아래 여백 조절 */
+}
+.plan-revenue-page .plan-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;    /* ← 추가: 상/하/좌/우 마진 모두 0 */
+}
+.revenue-main {
+  flex: 1;       /* 남은 공간을 전부 채워서 버튼을 밑으로 밀어냄 */
+}
+.title-input {
+  font-size: 20px;
+  font-family: "Pretendard";
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  color: #868686;
+  padding: 0;
+  caret-color: black; /* 커서 잘 보이게 */
+  margin: 0 0 0 5px; 
+}
+/* goal-line 재사용 (input + dropdown 한 줄 정렬) */
+.goal-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.goal-line input,
+.goal-line .category-trigger.small {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+/* + 수입 종류 추가하기 */
+.add-goal-link {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+
+.input-with-suffix {
+  position: relative;
+  display: inline-block;
+}
+
+.input-with-suffix input {
+  /* 오른쪽에 공간을 남겨둡니다 */
+  padding-right: 48px;   /* 접미사 너비 + 여유 */
+  box-sizing: border-box;
+  width: 120px;
+   padding: 8px 48px 8px 12px
+}
+
+.input-with-suffix .suffix {
+  position: absolute;
+  right: 12px;           /* input padding-right 값과 맞춰주세요 */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;  /* 입력 인터렉션 방해하지 않음 */
+  color: #666;           /* 필요에 따라 색상 조정 */
+}
