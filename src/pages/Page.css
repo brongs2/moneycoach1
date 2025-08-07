@@ -99,6 +99,7 @@ h4{
   min-height: 75vh; /* 화면 세로 전체 확보 */
   padding-bottom: 20px; 
   box-sizing: border-box;
+  background: #ffffff;
 }
 
 
@@ -130,26 +131,6 @@ h4{
 /*  ------------------------------------------------------------------------------------------------------------------- */
 /*  ------------------------------------------------------------------------------------------------------------------- */
 
-.plan-revenue-page {
-  background: #f4f4f4;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  min-height: 75vh
-}
-.plan-revenue-page h1 {
-  margin-top: 0;
-  margin-left: 5px;
-  margin-bottom: 40px; /* 필요에 따라 아래 여백 조절 */
-}
-.plan-revenue-page .plan-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;    /* ← 추가: 상/하/좌/우 마진 모두 0 */
-}
-.revenue-main {
-  flex: 1;       /* 남은 공간을 전부 채워서 버튼을 밑으로 밀어냄 */
-}
 .title-input {
   font-size: 20px;
   font-family: "Pretendard";
@@ -161,8 +142,7 @@ h4{
   color: #868686;
   padding: 0;
   caret-color: black; /* 커서 잘 보이게 */
-  margin: 30px 0px 0px 30px; 
-
+  margin: 0 0 0 5px; 
 }
 /* goal-line 재사용 (input + dropdown 한 줄 정렬) */
 .goal-line {
@@ -210,4 +190,19 @@ h4{
   transform: translateY(-50%);
   pointer-events: none;  /* 입력 인터렉션 방해하지 않음 */
   color: #666;           /* 필요에 따라 색상 조정 */
+}
+.plan-consume-page,
+.plan-revenue-page,
+.priority-setup,
+.priority-main {
+  padding: 20px;
+}
+
+.plan-consume-page h1,
+.plan-revenue-page h1,
+.priority-setup h1,
+.priority-main h1{
+  margin-top: 0;
+  margin-left: 5px;
+  margin-bottom: 40px; /* 필요에 따라 아래 여백 조절 */
 }

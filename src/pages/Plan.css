@@ -9,12 +9,7 @@
   padding: 24px 24px 24px 16px; /* 왼쪽만 줄임 */
   box-sizing: border-box;
 }
-.add-plan-page {
-  background-color: #f4f4f4;
-}
-.plan-revenue-page {
-  background-color: #f4f4f4;
-}
+
 
 .page-subtitle {
   color: #aaa;
