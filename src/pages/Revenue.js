@@ -33,6 +33,8 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
   };
 
   return (
+    <>
+    
     <div className="setup-page">
       <div className="revenue-main">
       <input
@@ -99,5 +101,6 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
         <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
       </div>
     </div>
+    </>
   );
 }

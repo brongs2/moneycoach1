@@ -5,7 +5,6 @@ import CategoryButton from "../components/CategoryButton";
 import GotoButton from "../components/GotoButton";
 import Input from "../components/Input";
 import "./Page.css";
-import "./Consume.css";
 
 export default function Consume({ title, setTitle, onPrev, onNext }) {
   const [revenues, setRevenues] = useState([

@@ -21,21 +21,7 @@
   font-size: 12px;
   margin-bottom: 8px;
 }
- .title-input {
-  font-size: 24px;
-  font-family: "Pretendard";
-  margin-left: 30px;
-  font-weight: bold;
-  border: none;
-  background: transparent;
-  width: 100%;
-  margin-bottom: 24px;
-  outline: none;
-  color: #868686;
-  padding: 0;
-  caret-color: black; /* 커서 잘 보이게 */
-  margin-left: 5px;  
-}
+
 .input-block .input-content input {
   width: 60px;
   padding: 6px;
