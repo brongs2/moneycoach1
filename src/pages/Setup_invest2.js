@@ -34,7 +34,11 @@ export default function Setupinvest2({ onPrev, onNext }) {
   }
 
   return(
-    <div className="setup-page">
+    <div style = {{display: "flex",
+                        flexDirection: "column",
+                        minHeight: "75vh",/* 화면 세로 전체 확보 */
+                        paddingBottom: "20px", 
+                        boxSizing: "border-box"}}>
     
     <h4>현재 수익률보다는<br/> 
     미래 종합적인 예상 수익률을 써주세요</h4>

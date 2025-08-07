@@ -20,13 +20,13 @@ export default function SetupSaving({ onPrev, onNext }) {
   
   return (
     <>
-    <h1>
+   
+    
+    <div className = "setup-page">
+         <h1>
           어떤 방식으로<br />
           저축하고 있나요?
         </h1>
-    
-    <div className = "setup-page">
-        
         {savinglists.map(bundle => (
           <CategoryBundle
             key={bundle.id}

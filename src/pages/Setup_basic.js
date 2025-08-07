@@ -11,9 +11,9 @@ export default function Setupbasic({onNext, onPrev}){
 
   return(
     <>
-    <h1> 000님 <br/>머니코치에 오신 것을 환영합니다. </h1>
-    <div className = "setup-page">
     
+    <div className = "setup-page">
+    <h1> 000님 <br/>머니코치에 오신 것을 환영합니다. </h1>
     <CategoryButton 
     items = {cat.items}
     key={cat.name} 

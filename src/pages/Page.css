@@ -121,7 +121,7 @@ h4{
 
 .setup-scroll-wrapper {
   padding-top: 14.2vh; /* 헤더 높이만큼 오프셋 */
-
+  min-height: 75vh;
 }
 
 

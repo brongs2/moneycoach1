@@ -5,7 +5,7 @@ import Plan from './pages/Plan';
 
 export default function MyApp() {
   return (
-    // <Setup/>
-    <Plan/>
+    <Setup/>
+    // <Plan/>
   );
 }

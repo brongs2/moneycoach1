@@ -20,7 +20,11 @@ export default function Setupinvest1({onPrev, onNext}){
 
     
     return (
-        <div className = "setup-page">
+        <div style = {{display: "flex",
+                        flexDirection: "column",
+                        minHeight: "68.5vh",/* 화면 세로 전체 확보 */
+                        paddingBottom: "10vh", 
+                        boxSizing: "border-box"}}>
             
             {savinglists.map(bundle => (
             <CategoryBundle
