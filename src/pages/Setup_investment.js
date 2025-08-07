@@ -27,27 +27,42 @@ export default function Setupinvestment({ onNext, onPrev }) {
     }, []);
 
     const scrollToInvest2 = () => {
-        invest2Ref.current?.scrollIntoView({ behavior: "smooth", block: "start"  });
+        if (invest2Ref.current) {
+            const offset = window.innerHeight * 0.12; // 화면 높이의 25%
+             const y =
+                invest2Ref.current.getBoundingClientRect().top +
+                window.pageYOffset -
+                offset
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
     };
 
     const scrollToInvest1 = () => {
-        invest1Ref.current?.scrollIntoView({ behavior: "smooth", block: 'start' });
-    };
+        if (invest1Ref.current) {
+            const offset = window.innerHeight * 0.25; // 화면 높이의 25%
+            const y =
+                invest1Ref.current.getBoundingClientRect().top +
+                window.pageYOffset -
+                offset; // 원하는 10px 오프셋
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }
+    
 
     return (
-    <div>
-        
-        <div className = "setup-page"> 
+    <div className="setup-page">
         <h1 className="setup-title">{title}</h1>
+        <div className="setup-scroll-wrapper"> 
             <div ref={invest1Ref}>
-        <Setupinvest1 onPrev={onPrev} onNext={scrollToInvest2} />
-      </div>
-      <div
-        ref={invest2Ref}
-        className={`step-container step-2 ${visibleStep2 ? "visible" : ""}`}
-      >
-        <Setupinvest2 onPrev={scrollToInvest1} onNext={onNext} />
-      </div>
+                
+                <Setupinvest1 onPrev={onPrev} onNext={scrollToInvest2} />
+            </div>
+            <div
+                ref={invest2Ref}
+                className={`step-container step-2 ${visibleStep2 ? "step-1" : ""}`}
+            >
+                <Setupinvest2 onPrev={scrollToInvest1} onNext={onNext} />
+            </div>
     </div>
     </div>
     );

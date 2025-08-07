@@ -27,15 +27,26 @@
 
 }
 
+.up {
+  margin-left: 30px;
+  margin-right: auto;
+}
+
+.down{
+  margin-right: 30px;
+    margin-left: auto;
+}
 
 .goto-container{
     display:flex;
     position: relative;
   width: 100%;
   height: /* 버튼 높이만큼 충분히 */;
+  justify-content:space-between;
 }
 
 .nav-buttons {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: auto; /* 이게 핵심: 버튼이 항상 맨 아래로 밀림 */

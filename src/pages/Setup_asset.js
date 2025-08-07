@@ -7,28 +7,28 @@ import './Page.css';
 import { useState } from "react";
 
 
-export default function SetupSaving({ onPrev, onNext }) {
-  const [savinglists, setSavingLists] = useState([{ id: 1, amount: '' }]);
+export default function Setupassets({ onPrev, onNext }) {
+  const [Assetslists, setAssetsLists] = useState([{ id: 1, amount: '' }]);
 
   let nextId = 2;  
 
 
-    function handleSavings(){
-        setSavingLists(prev => [...prev, { id: nextId++, amount: '' }])
+    function handleAssetss(){
+        setAssetsLists(prev => [...prev, { id: nextId++, amount: '' }])
     }
 
   
   return (
     <>
     <h1>
-          어떤 방식으로<br />
-          저축하고 있나요?
+          어떤 자산을<br />
+          가지고 계신가요?
         </h1>
     
     <div className = "setup-page">
         
-        {savinglists.map(bundle => (
-          <CategoryBundle
+        {Assetslists.map(bundle => (
+          (bundle.id>= 2) && <CategoryBundle
             key={bundle.id}
             menuItems={['일반 예금', '정기 예금', '적금']}
             unitItems={['₩', '$', '€']}
@@ -38,9 +38,9 @@ export default function SetupSaving({ onPrev, onNext }) {
 
         <AddButton
                 className="add-link"
-                onClick = {handleSavings} 
+                onClick = {handleAssetss} 
             >
-                + 저축 종류 추가하기</AddButton>
+                + 자산 종류 추가하기</AddButton>
         
           <div className="nav-buttons">
             <div className = 'goto-container'>

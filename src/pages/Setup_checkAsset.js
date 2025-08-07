@@ -7,7 +7,7 @@ import { Fragment } from 'react';
 
 
 
-export default function Setupassets({onPrev, onNext}){
+export default function SetupCheckAsset({onPrev, onNext}){
   const [selectedList, setSelectedList] = useState([]);
 
   const toggleSelection = (title) => {
@@ -21,8 +21,9 @@ export default function Setupassets({onPrev, onNext}){
   };
     return (
     <Fragment style={{background: '#eee'}}>
+      <h1> 가지고 있는 자산을<br/> 모두 체크해주세요 </h1>
     <div className="setup-page" >
-        <h1> 가지고 있는 자산을 모두 체크해주세요 </h1>
+        
         <AssetButton
           icon={<FaPiggyBank />}
           title="저축"
