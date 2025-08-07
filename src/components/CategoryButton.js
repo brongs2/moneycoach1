@@ -27,7 +27,7 @@ export default function CategoryButton({ items, title, size = 'medium', onSelect
   };
 
   return (
-    <div style={{ marginBottom: '10px', position: "relative"}}>
+    <div style={{ position: "relative"} /* marginBottom : '10px  삭제*/}>
       {title && <h2>{title}</h2>}
 
       <Button

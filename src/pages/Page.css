@@ -18,11 +18,18 @@
 .setup-page {
   display: flex;
   flex-direction: column;
-  min-height: 90vh; /* 화면 세로 전체 확보 */
+  min-height: 75vh; /* 화면 세로 전체 확보 */
   padding-bottom: 20px; 
   box-sizing: border-box;
+  max-width:600px;
 }
 
+.plantitle{
+ color: #868686;
+ margin-left: 20px;
+ font-family: "Pretendard";
+  font-weight: 800;
+}
 h1{
   color: #333;
   margin-left: 30px;
@@ -39,4 +46,10 @@ h2{
   font-size: 32px;
   font-family: "Pretendard";
   font-weight: 500;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;  /* .revenue-main 이 늘어나고 남은 공간 위에 붙음 */
+  padding: 16px 0;   /* 위아래 여백 조절 */
 }

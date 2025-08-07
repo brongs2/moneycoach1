@@ -1,0 +1,37 @@
+.revenue-main {
+  flex: 1;       /* 남은 공간을 전부 채워서 버튼을 밑으로 밀어냄 */
+}
+.priority-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.priority-line .remove-goal-button {
+  margin-left: auto;
+}
+.priority-index {
+  font-size: 24px; /* 원하는 크기로 조정 */
+  font-weight: bold; /* 선택 사항 */
+  margin-right: 4px; /* CategoryButton과 간격 */
+}
+.input-with-suffix {
+  position: relative;
+  display: inline-block;
+}
+
+.input-with-suffix input {
+  /* 오른쪽에 공간을 남겨둡니다 */
+  padding-right: 48px;   /* 접미사 너비 + 여유 */
+  box-sizing: border-box;
+  width: 120px;
+   padding: 8px 48px 8px 12px
+}
+
+.input-with-suffix .suffix {
+  position: absolute;
+  right: 12px;           /* input padding-right 값과 맞춰주세요 */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;  /* 입력 인터렉션 방해하지 않음 */
+  color: #666;           /* 필요에 따라 색상 조정 */
+}
