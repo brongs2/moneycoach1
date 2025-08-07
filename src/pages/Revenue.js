@@ -5,7 +5,6 @@ import CategoryBundle from "../components/CategoryBundle";
 import GotoButton from "../components/GotoButton";
 import Input from "../components/Input";
 import "./Page.css";
-import "./Revenue.css";
 
 export default function Revenue({ title, setTitle, onPrev, onNext }) {
   const [revenues, setRevenues] = useState([
@@ -89,6 +88,5 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
         </GotoButton>
       </div>
     </div>
-   
   );
 }

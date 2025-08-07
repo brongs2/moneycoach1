@@ -23,8 +23,7 @@ function Priority_setup({ title, setTitle, onPrev, onNext, priorities, setPriori
     setPriorities(priorities.filter((_, i) => i !== idx));
   };
     return (
-        <div className="setup-page">
-            <div className="priority main">
+        <div className="setup-page priority-setup">
             <input
                 className="title-input"
                 value={title}
@@ -54,7 +53,6 @@ function Priority_setup({ title, setTitle, onPrev, onNext, priorities, setPriori
                     </InputBlock>
                 ))
             }
-            </div>
             <div className="add-goal-link" onClick={handleAddPrioiriy}>
                 + 소비 종류 추가하기
             </div>
@@ -74,9 +72,8 @@ function Priority_ratio({ title, setTitle, onPrev, onNext, priorities, setPriori
     const categories =["저축", "빚", "소비"];
 
     return (
-        <div className="setup-page">
-            <div className="priority main">
-            <input
+        <div className="setup-page priority-main">
+            <input 
                 className="title-input"
                 value={title}
                 onChange={e => setTitle(e.target.value)}
@@ -109,7 +106,6 @@ function Priority_ratio({ title, setTitle, onPrev, onNext, priorities, setPriori
                     </InputBlock>
                 ))
             }
-            </div>
 
             <div className="nav-buttons">
                 <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
