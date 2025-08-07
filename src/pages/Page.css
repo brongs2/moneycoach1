@@ -15,6 +15,7 @@
   margin-bottom: 12px;
 }
 
+<<<<<<< HEAD
 .setup-page {
   display: flex;
   flex-direction: column;
@@ -23,6 +24,9 @@
   box-sizing: border-box;
   max-width:600px;
 }
+=======
+
+>>>>>>> 79a7b8908fe76f8b4850ef96305c1fa413df9a86
 
 .plantitle{
  color: #868686;
@@ -47,9 +51,90 @@ h2{
   font-family: "Pretendard";
   font-weight: 500;
 }
+<<<<<<< HEAD
 .nav-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: auto;  /* .revenue-main 이 늘어나고 남은 공간 위에 붙음 */
   padding: 16px 0;   /* 위아래 여백 조절 */
 }
+=======
+
+h3{
+  color: #333;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 30px;
+  font-family: "Pretendard";
+  font-weight: 500;
+}
+
+
+h4{
+  color: #777;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 20px;
+  font-family: "Pretendard";
+  font-weight: 500;
+}
+
+
+.rate-field{
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+  color: #333;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 30px;
+  font-family: "Pretendard";
+  font-weight: 500;
+}
+.rate-label{ 
+  margin: 0; 
+  font-weight: 600; 
+}  /* 필요 시 조정 */
+
+.rate-field input{ 
+  flex: 1 0 120px; 
+} 
+
+.step-container {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+  scroll-margin-top: 100px; /* 헤더 높이만큼 스크롤 오프셋 */
+  min-height: 90vh;
+}
+
+.step-container.visible {
+  opacity: 1;
+}
+
+
+.setup-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh; /* 화면 세로 전체 확보 */
+  padding-bottom: 20px; 
+  box-sizing: border-box;
+}
+
+
+.setup-title {
+  position: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;        /* 래퍼 위에 덮을 때 글자가 안 묻히도록 */
+  z-index: 1000;
+  
+  color: #333;
+  margin-left: 30px;
+  text-align: left;
+  font-size: 36px;
+  font-family: "Pretendard";
+  font-weight: 800;
+  
+}
+>>>>>>> 79a7b8908fe76f8b4850ef96305c1fa413df9a86

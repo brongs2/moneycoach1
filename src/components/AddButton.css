@@ -1,0 +1,13 @@
+.AddButton{
+    display: flex;
+    align-items: left;
+    background: none;
+    border: none;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 20px
+    }

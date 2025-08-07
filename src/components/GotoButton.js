@@ -2,6 +2,7 @@ import './GotoButton.css';
 
 import { HiOutlineArrowSmLeft } from "react-icons/hi";
 import { HiOutlineArrowSmRight } from "react-icons/hi";
+import { HiOutlineArrowSmDown } from "react-icons/hi";
 
 export default function GotoButton({ onClick, children, variant }) {
     const variantClass = `goto-button ${variant}`;
@@ -24,18 +25,19 @@ export default function GotoButton({ onClick, children, variant }) {
             className = {variantClass}
             onClick={onClick}
         >
-         {variant === 'right' ?
-         (
-            <>
-                {children} <HiOutlineArrowSmRight /> 
-            </>
-        ): 
-        (
-            <>
-        <HiOutlineArrowSmLeft />{children} 
-            </>
-        )
-    }
+         {variant === 'right' ? (
+      <>
+        {children} <HiOutlineArrowSmRight />
+      </>
+    ) : variant === 'down' ? (
+      <>
+        {children} <HiOutlineArrowSmDown />
+      </>
+    ) : (
+      <>
+        <HiOutlineArrowSmLeft /> {children}
+      </>
+    )}
         </Button>
     );
 }
