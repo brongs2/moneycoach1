@@ -1,7 +1,7 @@
 // Revenue.jsx
 import { useState } from "react";
 import InputBlock from "../components/InputBlock";
-import CategoryButton from "../components/CategoryButton";
+import CategoryBundle from "../components/CategoryBundle";
 import GotoButton from "../components/GotoButton";
 import Input from "../components/Input";
 import "./Page.css";
@@ -33,10 +33,8 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
   };
 
   return (
-    <>
-    
-    <div className="setup-page">
-      <div className="revenue-main">
+    <div className="setup-page plan-revenue-page">
+      {/* 제목 입력 */}
       <input
         className="title-input"
         value={title}
@@ -44,61 +42,51 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
         placeholder={title}
       />
 
+      {/* 페이지 헤딩 */}
       <h1>수입을 작성해주세요</h1>
 
-      {revenues.map((rev, idx) => (
-        <InputBlock key={rev.id} label={idx === 0 ? "" : undefined}>
-          <div className="goal-line">
-            {/* 카테고리 드롭다운 */}
-            <CategoryButton
-              items={categories}
-              size="medium"
-              selected={rev.category}
-              onSelect={v => handleChange(idx, "category", v)}
-            />
-
-            {/* 금액 입력 */}
-            <div className="input-with-suffix">
-              <Input
-                width="120px"
-                height="36px"
-                type="number"
-                placeholder="0"
-                value={rev.amount}
-                style={{ paddingRight: '1.5rem' }} 
-                onChange={e => handleChange(idx, "amount", e.target.value)}
+      {/* 콘텐츠 영역 */}
+      <div className="revenue-main">
+        {revenues.map((rev, idx) => (
+          <InputBlock key={rev.id} label={idx === 0 ? "" : undefined}>
+            {/* CategoryBundle + 삭제 버튼 */}
+            <div className="goal-line">
+              <CategoryBundle
+                menuItems={categories}
+                unitItems={frequencies}
+                category={rev.category}
+                amount={rev.amount}
+                frequency={rev.frequency}
+                onCategoryChange={v => handleChange(idx, "category", v)}
+                onAmountChange={v => handleChange(idx, "amount", v)}
+                onFrequencyChange={v => handleChange(idx, "frequency", v)}
               />
-              <span className="suffix">만원</span>
+              {revenues.length > 1 && (
+                <button
+                  className="remove-goal-button"
+                  onClick={() => handleRemove(idx)}
+                >
+                  ❌
+                </button>
+              )}
             </div>
+          </InputBlock>
+        ))}
 
-            {/* 주기 드롭다운 */}
-            <CategoryButton
-              items={frequencies}
-              size="small"
-              selected={rev.frequency}
-              onSelect={v => handleChange(idx, "frequency", v)}
-            />
-
-            {/* 삭제 버튼 */}
-            {revenues.length > 1 && (
-              <button
-                className="remove-goal-button"
-                onClick={() => handleRemove(idx)}
-              >
-                ❌
-              </button>
-            )}
-          </div>
-        </InputBlock>
-      ))}
-
-      <div className="add-goal-link" onClick={handleAddRevenue}>
-        + 수입 종류 추가하기
+        {/* 항목 추가 링크 */}
+        <div className="add-goal-link" onClick={handleAddRevenue}>
+          + 수입 종류 추가하기
+        </div>
       </div>
-      </div>
+
+      {/* 이전/다음 버튼 */}
       <div className="nav-buttons">
-        <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
-        <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+        <GotoButton variant="left" onClick={onPrev}>
+          이전
+        </GotoButton>
+        <GotoButton variant="right" onClick={onNext}>
+          다음
+        </GotoButton>
       </div>
     </div>
     </>
