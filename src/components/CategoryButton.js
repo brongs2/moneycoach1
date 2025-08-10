@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function CategoryButton({ items, title, size = 'medium', onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(items[0]);
+  const [selected, setSelected] = useState(items && items.length > 0 ? items[0] : '');
 
   function Button({ children, className, onClick, value }) {
     return (

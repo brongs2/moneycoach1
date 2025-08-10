@@ -37,11 +37,17 @@ export default function GotoButton({ onClick, children, variant }) {
         <HiOutlineArrowSmUp /> {children}
       </>
     )
-    :(
+    :variant === 'left' ?(
       <>
         <HiOutlineArrowSmLeft /> {children}
       </>
-    )}
+    ):
+    (
+      <>
+        {children}
+      </>
+    )
+  }
         </Button>
     );
 }
