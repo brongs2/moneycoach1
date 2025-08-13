@@ -8,28 +8,27 @@ import AddButton from "../components/AddButton";
 import "./Page.css";
 
 export default function Revenue({ title, setTitle, onPrev, onNext }) {
-  const [revenues, setRevenues] = useState([
+  const [taxes, setTaxes] = useState([
     { id: Date.now(), category: "임금", amount: "", frequency: "월" }
   ]);
 
-  const categories = ["임금", "사업소득", "기타"];
-  const frequencies = ["/주", "/월", "/년"];
+  const categories = ["소득세", "양도소득세", "자본세"];
 
   const handleAddRevenue = () => {
-    setRevenues([
-      ...revenues,
-      { id: Date.now(), category: "임금", amount: "", frequency: "월" }
+    setTaxes([
+      ...taxes,
+      { id: Date.now(), category: "소득세", amount: "", frequency: "월" }
     ]);
   };
 
   const handleChange = (idx, key, value) => {
-    const copy = [...revenues];
+    const copy = [...taxes];
     copy[idx][key] = value;
-    setRevenues(copy);
+    setTaxes(copy);
   };
 
   const handleRemove = (idx) => {
-    setRevenues(revenues.filter((_, i) => i !== idx));
+    setTaxes(taxes.filter((_, i) => i !== idx));
   };
 
   return (
@@ -43,14 +42,14 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
       />
 
       {/* 페이지 헤딩 */}
-      <h1>수입을 작성해주세요</h1>
+      <h1>세금을 작성해주세요</h1>
 
       {/* 콘텐츠 영역 */}
-      {revenues.map((bundle, idx) => (
+      {taxes.map((bundle, idx) => (
                 <div key={bundle.id} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <CategoryBundle
                     menuItems={categories}
-                    unitItems={frequencies}
+                    unit="%"
                     onRemove={() => handleRemove(idx)}
                   />
       
@@ -60,7 +59,7 @@ export default function Revenue({ title, setTitle, onPrev, onNext }) {
           className="add-link"
           onClick = {handleAddRevenue} 
       >
-          + 저축 종류 추가하기</AddButton>
+          + 세금 종류 추가하기</AddButton>
   
     <div className="nav-buttons">
       <div className = 'goto-container'>

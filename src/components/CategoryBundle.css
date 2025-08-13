@@ -1,0 +1,73 @@
+/* 레이아웃 */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;              /* 요소 간 간격 */
+  margin-bottom: 12px; 
+}
+
+/* 공통 외형: pill 형태, 진한 검은 테두리 */
+.control,
+.input-group > *:not(button):not(.amount-input):not(svg):not(.unit-text) {
+  /* CategoryButton에 className 못 주는 경우 대비용(필요 없으면 삭제 가능) */
+  border: 2px solid #000;
+  border-radius: 14px;
+  height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 36px;
+}
+.unit-text {
+  font-size: 16px;
+  line-height: 36px;   /* input 높이와 맞춰서 수직 가운데 */
+  margin-left: 4px;    /* input과 약간 띄우기 */
+  color: #000;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+/* 금액 입력창 */
+.amount-input {
+  width: 140px;
+  height: 36px;
+  padding: 0 12px;
+  border: 2px solid #000;     /* 외형 통일 */
+  border-radius: 14px;
+  font-size: 16px;
+  outline: none;
+  text-align: right;          /* 숫자는 오른쪽 정렬 */
+  line-height: 36px;
+}
+
+/* placeholder 색상(연한 회색) */
+.amount-input::placeholder {
+  color: #c4c4c4;
+}
+
+/* 숫자 input 화살표 제거(크롬/사파리) */
+.amount-input::-webkit-outer-spin-button,
+.amount-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* 파이어폭스 숫자 input 기본 스타일 제거 */
+.amount-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* 포커스 시 아주 약한 강조(테두리는 유지) */
+.amount-input:focus {
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+/* 삭제 버튼(우측 X) */
+.input-group button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #000;
+  padding: 0;
+}
+.input-group button:hover {
+  opacity: 0.7;
+}

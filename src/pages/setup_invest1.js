@@ -8,15 +8,24 @@ import './Page.css';
 import { useState } from "react";
 
 export default function Setupinvest1({onPrev, onNext}){  
-    const [savinglists, setSavingLists] = useState([{ id: 1, amount: '' }]);
-
-    
-    let nextId = 2;  
-
-
-        function handleSavings(){
-            setSavingLists(prev => [...prev, { id: nextId++, amount: '' }])
-        }
+    const [investlists, setInvestlists] = useState([
+    {
+      id : Date.now(), category : "주식", amount: "", unit: "₩"
+    }
+  ]); 
+    const categories = ['주식', '채권', '암호 화폐', '펀드'];
+    const units = ['₩', '$', '€'];
+    const handleAddInvests = () => {
+    setInvestlists([
+      ...investlists,
+      {
+      id : Date.now(), category : "주식", amount: "", unit: "₩"
+    }
+    ]);
+  }
+    const handleRemove = (idx) => {
+    setInvestlists(investlists.filter((_, i) => i !== idx));
+  };
 
     
     return (
@@ -26,18 +35,18 @@ export default function Setupinvest1({onPrev, onNext}){
                         paddingBottom: "10vh", 
                         boxSizing: "border-box"}}>
             
-            {savinglists.map(bundle => (
+            {investlists.map((bundle, idx) => (
             <CategoryBundle
                 key={bundle.id}
-                menuItems={['주식', '채권', '암호 화폐', '펀드']}
-                unitItems={['₩', '$', '€']}
-                amount={bundle.amount}
+                menuItems={categories}
+                unitItems={units}
+                onRemove={() => handleRemove(idx)}
             />
             ))}
 
             <AddButton
                     className="add-link"
-                    onClick = {handleSavings} 
+                    onClick = {handleAddInvests} 
                 >
                     + 투자 종류 추가하기</AddButton>
             <div className="nav-buttons">

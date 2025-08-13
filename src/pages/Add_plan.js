@@ -109,8 +109,11 @@ export default function AddPlan({ title, setTitle, onPrev, onNext }) {
       </div>
 
       <div className="nav-buttons">
-        <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
-      </div>
+          <div className = 'goto-container'>
+              <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
+              <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+          </div>
+        </div>
     </div>
   );
 }

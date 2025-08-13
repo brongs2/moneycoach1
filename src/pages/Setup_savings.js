@@ -8,14 +8,24 @@ import { useState } from "react";
 
 
 export default function SetupSaving({ onPrev, onNext }) {
-  const [savinglists, setSavingLists] = useState([{ id: 1, amount: '' }]);
-
-  let nextId = 2;  
-
-
-    function handleSavings(){
-        setSavingLists(prev => [...prev, { id: nextId++, amount: '' }])
+  const [savinglists, setSavingLists] = useState([
+    {
+      id : Date.now(), category : "일반 예금", amount: "", unit: "₩"
     }
+  ]); 
+
+
+  const categories = ['일반 예금', '정기 예금', '적금'];
+  const units = ['₩', '$', '€'];
+  const handleAddSavings = () => {
+    setSavingLists([
+      ...savinglists,
+      {id : Date.now(), caegory : "일반 예금", amount : "", unit : "₩"}
+    ]);
+  }
+    const handleRemove = (idx) => {
+    setSavingLists(savinglists.filter((_, i) => i !== idx));
+  };
 
   
   return (
@@ -27,18 +37,21 @@ export default function SetupSaving({ onPrev, onNext }) {
           어떤 방식으로<br />
           저축하고 있나요?
         </h1>
-        {savinglists.map(bundle => (
-          <CategoryBundle
-            key={bundle.id}
-            menuItems={['일반 예금', '정기 예금', '적금']}
-            unitItems={['₩', '$', '€']}
-            amount={bundle.amount}
-          />
+        {savinglists.map((bundle, idx) => (
+          <div key={bundle.id} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <CategoryBundle
+              menuItems={categories}
+              unitItems={units}
+              onRemove={() => handleRemove(idx)}
+            />
+
+          </div>
         ))}
+
 
         <AddButton
                 className="add-link"
-                onClick = {handleSavings} 
+                onClick = {handleAddSavings} 
             >
                 + 저축 종류 추가하기</AddButton>
         
