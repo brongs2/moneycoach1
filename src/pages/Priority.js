@@ -70,7 +70,7 @@ function Priority_ratio({ title, setTitle, onPrev, onNext, priorities, setPriori
     setPriorities(copy);
   };
     const categories =["저축", "빚", "소비"];
-
+    console.log(priorities)
     return (
         <div className="setup-page priority-main">
             <input 
@@ -89,7 +89,7 @@ function Priority_ratio({ title, setTitle, onPrev, onNext, priorities, setPriori
                             items={categories}
                             size="medium"
                             selected={pri.category}
-                            disabled={true}
+                            
                             />                            
                             <input
                             className="priority-ratio-input"
@@ -113,7 +113,7 @@ function Priority_ratio({ title, setTitle, onPrev, onNext, priorities, setPriori
             </div>
         </div>
     )
-}
+} 
 export default function Priority({ title, setTitle, onPrev, onNext }){
     const [state, setState] = useState(0);
     const [priorities, setPriorities] = useState([

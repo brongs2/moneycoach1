@@ -66,7 +66,7 @@ export default function SetupAssets({onPrev, onNext, assetList, setAssetList}){
                         key={cat.name}
                         size="medium"
                         onSelect={(value) => setSelectedCategory(value)}
-
+                        
                         />
                     </InputBlock>
                     <InputBlock label = '구매가'>
