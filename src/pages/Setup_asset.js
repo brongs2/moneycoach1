@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useCallback, memo, useRef } from 'react';
 import AddButton from '../components/AddButton';
 import InputBlock from "../components/InputBlock";
 import './Page.css';
@@ -6,190 +6,22 @@ import CategoryButton from '../components/CategoryButton';
 import GotoButton from '../components/GotoButton';
 import ResultButton from '../components/ResultButton';
 
-export default function SetupAssets({ onPrev, onNext, assetList, setAssetList }) {
+export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetList = () => {} }) {
   const [showAssetInfo, setShowAssetInfo] = useState(false);
 
-  function handleAddClick() {
-    // 새 항목을 assetList에 추가하고 작성 화면으로 이동
-    setAssetList(prev => [
-      ...prev,
-      {
-        id: Date.now(),
-        category: null,
-        purchasePrice: '',
-        currentPrice: '',
-        hasLoan: false,
-        loanPrice: '',
-        interestRate: '',
-        repayment: '',
-        compound: false,
-        unitName: ''
-      }
-    ]);
-    setShowAssetInfo(true);
-  }
-
-  // 특정 항목의 특정 키 업데이트
-  const updateAssetField = (id, key, value) => {
-    setAssetList(prev =>
-      prev.map(asset =>
-        asset.id === id ? { ...asset, [key]: value } : asset
-      )
-    );
+  const handleAddClick = () => {
+    setShowAssetInfo(true);       // ✅ 부모는 입력 중에 state 안 바뀜 → 재렌더 안 됨
   };
 
-  function AssetInfo({ asset }) {
-    const cat = { name: "자산", items: ["집", "귀금속", "부동산", "땅"] };
-    const unit = { name: "단위", items: ["억원", "만원"] };
-
-    return (
-      <div className='setup-page'>
-        <h1>어떤 자산을 <br /> 가지고 계신가요?</h1>
-
-        <div style={{ marginLeft: "30px" }}>
-          <InputBlock label='카테고리'>
-            <CategoryButton
-              items={cat.items}
-              key={cat.name}
-              size="medium"
-              onSelect={(value) => updateAssetField(asset.id, 'category', value)}
-              selected={asset.category}
-            />
-          </InputBlock>
-
-          <InputBlock label='구매가'>
-            <div className='inline-field'>
-              <input
-                type="number"
-                placeholder="0"
-                value={asset.purchasePrice}
-                onChange={(e) => updateAssetField(asset.id, 'purchasePrice', e.target.value)}
-              />
-              <CategoryButton
-                items={unit.items}
-                key={unit.name}
-                size="small"
-                selected={asset.unitName}
-                onSelect={value => updateAssetField(asset.id, 'unitName', value)}
-              />
-            </div>
-          </InputBlock>
-
-          <InputBlock label='현재 싯가'>
-            <div className='inline-field'>
-              <input
-                type="number"
-                placeholder="0"
-                value={asset.currentPrice}
-                onChange={e => updateAssetField(asset.id, 'currentPrice', e.target.value)}
-              />
-              <CategoryButton
-                items={unit.items}
-                key={unit.name}
-                size="small"
-                selected={asset.unitName}
-                onSelect={value => updateAssetField(asset.id, 'unitName', value)}
-              />
-            </div>
-          </InputBlock>
-
-          <br /><br /><br />
-
-          <div className='inline-field'>
-            <div style={{ fontFamily: 'Pretendard', fontWeight: '400', fontSize: '24px' }}>대출 여부</div>
-            <label className="toggle">
-              <input
-                type="checkbox"
-                checked={asset.hasLoan}
-                onChange={e => updateAssetField(asset.id, 'hasLoan', e.target.checked)}
-              />
-              <span className="slider" />
-              <span className="toggle-text">{asset.hasLoan ? '예' : '아니오'}</span>
-            </label>
-          </div>
-
-          {asset.hasLoan && (
-            <>
-              <InputBlock label='대출금'>
-                <div className='inline-field'>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    value={asset.loanPrice}
-                    onChange={e => updateAssetField(asset.id, 'loanPrice', e.target.value)}
-                  />
-                  <CategoryButton
-                    items={unit.items}
-                    key={unit.name}
-                    size="small"
-                    selected={asset.unitName}
-                    onSelect={value => updateAssetField(asset.id, 'unitName', value)}
-                  />
-                </div>
-              </InputBlock>
-
-              <InputBlock label='이자율'>
-                <div className='inline-field'>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    value={asset.interestRate}
-                    onChange={e => updateAssetField(asset.id, 'interestRate', e.target.value)}
-                  />
-                  %
-                  <label className="toggle">
-                    <input
-                      type="checkbox"
-                      checked={asset.compound}
-                      onChange={e => updateAssetField(asset.id, 'compound', e.target.checked)}
-                    />
-                    <span className="slider" />
-                    <span className="toggle-text">{asset.compound ? '복리' : '단리'}</span>
-                  </label>
-                </div>
-              </InputBlock>
-
-              <InputBlock label='월 상환액'>
-                <div className='inline-field'>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    value={asset.repayment}
-                    onChange={e => updateAssetField(asset.id, 'repayment', e.target.value)}
-                  />
-                  <CategoryButton
-                    items={unit.items}
-                    key={unit.name}
-                    size="small"
-                    selected={asset.unitName}
-                    onSelect={value => updateAssetField(asset.id, 'unitName', value)}
-                  />
-                </div>
-              </InputBlock>
-            </>
-          )}
-        </div>
-
-        <div className="nav-buttons">
-          <div className='goto-container'>
-            <GotoButton
-              variant="complete"
-              onClick={() => setShowAssetInfo(false)}
-            >
-              완료
-            </GotoButton>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const editingAsset = assetList[assetList.length - 1];
+  const handleComplete = useCallback((draft) => {
+    setAssetList(prev => [...prev, draft]);  // ✅ 완료 시에만 부모 갱신
+    setShowAssetInfo(false);
+  }, [setAssetList]);
 
   return (
     <div className='setup-page'>
-      {showAssetInfo && editingAsset ? (
-        <AssetInfo asset={editingAsset} />
+      {showAssetInfo ? (
+        <AssetInfo onComplete={handleComplete} onCancel={() => setShowAssetInfo(false)} />
       ) : (
         <>
           <h1>어떤 자산을 <br />가지고 계신가요?</h1>
@@ -209,10 +41,7 @@ export default function SetupAssets({ onPrev, onNext, assetList, setAssetList })
               />
             ))}
 
-          <AddButton
-            className='add link'
-            onClick={handleAddClick}
-          >
+          <AddButton className='add link' onClick={handleAddClick}>
             + 자산 추가하기
           </AddButton>
 
@@ -227,3 +56,173 @@ export default function SetupAssets({ onPrev, onNext, assetList, setAssetList })
     </div>
   );
 }
+
+/** ---- 입력 화면 (자식 내부에서 draft 관리) ---- */
+const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
+  const [draft, setDraft] = useState(() => ({
+    id: Date.now(),
+    category: null,
+    purchasePrice: {price: '', unit: ''},
+    currentPrice: {price: '', unit: ''},
+    hasLoan: false,
+    loanPrice: {price: '', unit: ''},
+    interestRate: '',
+    repayment: {price: '', unit: ''},
+    compound: false,
+    
+  }));
+
+  const update = useCallback((k, v) => {
+    setDraft(prev => ({ ...prev, [k]: v }));
+  }, []);
+
+  const updateMoney = useCallback((field, key, value) => {
+    setDraft(prev => ({
+      ...prev,
+      [field]: {
+        ...prev[field],
+        [key]: value,
+      },
+    }));
+  }, []);
+
+  const cat = { name: "자산", items: ["집", "귀금속", "부동산", "땅"] };
+  const unit = { name: "단위", items: ["억원", "만원"] };
+
+  return (
+    <div className='setup-page'>
+      <h1>어떤 자산을 <br /> 가지고 계신가요?</h1>
+
+      <div style={{ marginLeft: 30 }}>
+        <InputBlock label='카테고리'>
+          <CategoryButton
+            items={cat.items}
+            size="medium"
+            selected={draft.category}
+            onSelect={v => update('category', v)}
+          />
+        </InputBlock>
+
+        <InputBlock label='구매가'>
+          <div className='inline-field'>
+            <input
+              type="text"
+              inputMode="numeric"
+              placeholder="0"
+              value={draft.purchasePrice.price}
+              onChange={e => updateMoney('purchasePrice', 'price', e.target.value)}
+            />
+            <CategoryButton
+              items={unit.items}
+              size="small"
+              selected={draft.purchasePrice.unit}
+              onSelect={v => updateMoney('purchasePrice', 'unit', v)}
+            />
+          </div>
+        </InputBlock>
+
+        <InputBlock label='현재 싯가'>
+          <div className='inline-field'>
+            <input
+              type="text"
+              inputMode="numeric"
+              placeholder="0"
+              value={draft.currentPrice.price}
+              onChange={e => updateMoney('currentPrice', 'price', e.target.value)}
+            />
+            <CategoryButton
+              items={unit.items}
+              size="small"
+              selected={draft.currentPrice.unit}
+              onSelect={v => updateMoney('currentPrice', 'unit', v)}
+            />
+          </div>
+        </InputBlock>
+
+        <br /><br /><br />
+
+        <div className='inline-field'>
+          <div style={{ fontFamily: 'Pretendard', fontWeight: 400, fontSize: 24 }}>대출 여부</div>
+          <label className="toggle">
+            <input
+              type="checkbox"
+              checked={draft.hasLoan}
+              onChange={e => update('hasLoan', e.target.checked)}
+            />
+            <span className="slider" />
+            <span className="toggle-text">{draft.hasLoan ? '예' : '아니오'}</span>
+          </label>
+        </div>
+
+        {draft.hasLoan && (
+          <>
+            <InputBlock label='대출금'>
+              <div className='inline-field'>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="0"
+                  value={draft.loanPrice.price}
+                  onChange={e => updateMoney('loanPrice', 'price', e.target.value)}
+                />
+                <CategoryButton
+                  items={unit.items}
+                  size="small"
+                  selected={draft.loanPrice.unit}
+                  onSelect={v => updateMoney('loanPrice', 'unit', v)}
+                />
+              </div>
+            </InputBlock>
+
+            <InputBlock label='이자율'>
+              <div className='inline-field'>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="0"
+                  value={draft.interestRate}
+                  onChange={e => update('interestRate', e.target.value)}
+                />
+                %
+                <label className="toggle">
+                  <input
+                    type="checkbox"
+                    checked={draft.compound}
+                    onChange={e => update('compound', e.target.checked)}
+                  />
+                  <span className="slider" />
+                  <span className="toggle-text">{draft.compound ? '복리' : '단리'}</span>
+                </label>
+              </div>
+            </InputBlock>
+
+            <InputBlock label='월 상환액'>
+              <div className='inline-field'>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="0"
+                  value={draft.repayment.price}
+                  onChange={e => updateMoney('repayment', 'price', e.target.value)}
+                />
+                <CategoryButton
+                  items={unit.items}
+                  size="small"
+                  selected={draft.repayment.unit}
+                  onSelect={v => updateMoney('repayment', 'unit', v)}
+                />
+              </div>
+            </InputBlock>
+          </>
+        )}
+      </div>
+
+      <div className="nav-buttons">
+        <div className='goto-container'>
+          <GotoButton variant="left" onClick={onCancel}>취소</GotoButton>
+          <GotoButton variant="complete" onClick={() => onComplete(draft)}>완료</GotoButton>
+        </div>
+      </div>
+    </div>
+  );
+});

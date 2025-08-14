@@ -8,19 +8,20 @@ import { useState } from "react";
 
 
 export default function SetupSaving({ onPrev, onNext }) {
+  
   const [savinglists, setSavingLists] = useState([
     {
       id : Date.now(), category : "일반 예금", amount: "", unit: "₩"
     }
   ]); 
-
+  console.log(savinglists);
 
   const categories = ['일반 예금', '정기 예금', '적금'];
   const units = ['₩', '$', '€'];
   const handleAddSavings = () => {
     setSavingLists([
       ...savinglists,
-      {id : Date.now(), caegory : "일반 예금", amount : "", unit : "₩"}
+      {id : Date.now(), category : "일반 예금", amount : "", unit : "₩"}
     ]);
   }
     const handleRemove = (idx) => {

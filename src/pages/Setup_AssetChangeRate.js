@@ -14,14 +14,13 @@ export default function SetupAssetChangeRate({onPrev, onNext, assetList, setAsse
 
         <div className="setup-page">
             <h1>각 자산의 자산 변동률을 <br/> 입력해주세요</h1>
-            {assetList
-            .map(bundle => (
-                <RateItems
-                    menuName={bundle.category}
-                    unitName='%'
-                />
-            ))
-            }
+            {assetList.map(bundle => (
+              <RateItems
+                key={bundle.id}
+                menuName={bundle.category ?? ''}
+                unitName='%'
+              />
+            ))}
             <div className="nav-buttons">
                 <div className = 'goto-container'>
                     <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
