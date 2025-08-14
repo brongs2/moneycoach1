@@ -8,14 +8,13 @@ import ResultButton from '../components/ResultButton';
 
 export default function SetupAssets({ onPrev, onNext, assetList, setAssetList }) {
   const [showAssetInfo, setShowAssetInfo] = useState(false);
-  const nextIdRef = useRef(2);
 
   function handleAddClick() {
     // 새 항목을 assetList에 추가하고 작성 화면으로 이동
     setAssetList(prev => [
       ...prev,
       {
-        id: nextIdRef.current++,
+        id: Date.now(),
         category: null,
         purchasePrice: '',
         currentPrice: '',
@@ -64,7 +63,7 @@ export default function SetupAssets({ onPrev, onNext, assetList, setAssetList })
                 type="number"
                 placeholder="0"
                 value={asset.purchasePrice}
-                onChange={e => updateAssetField(asset.id, 'purchasePrice', e.target.value)}
+                onChange={(e) => updateAssetField(asset.id, 'purchasePrice', e.target.value)}
               />
               <CategoryButton
                 items={unit.items}
