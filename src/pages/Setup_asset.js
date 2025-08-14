@@ -6,6 +6,12 @@ import CategoryButton from '../components/CategoryButton';
 import GotoButton from '../components/GotoButton';
 import ResultButton from '../components/ResultButton';
 
+
+
+const cat = { name: "자산", items: ["집", "귀금속", "부동산", "땅"] };
+const unit = { name: "단위", items: ["억원", "만원"] };
+
+
 export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetList = () => {} }) {
   const [showAssetInfo, setShowAssetInfo] = useState(false);
 
@@ -31,12 +37,12 @@ export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetLi
             .map(bundle => (
               <ResultButton
                 key={bundle.id}
-                purchasePrice={bundle.purchasePrice}
-                currentPrice={bundle.currentPrice}
+                purchasePrice={bundle.purchasePrice.price + bundle.purchasePrice.unit}
+                currentPrice={bundle.currentPrice.price + bundle.currentPrice.unit}
                 hasLoan={bundle.hasLoan}
-                loanPrice={bundle.loanPrice}
+                loanPrice={bundle.loanPrice.price + bundle.loanPrice.unit}
                 interestRate={bundle.interestRate}
-                repayment={bundle.repayment}
+                repayment={bundle.repayment.price + bundle.repayment.unit}
                 compound={bundle.compound}
               />
             ))}
@@ -62,12 +68,12 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
   const [draft, setDraft] = useState(() => ({
     id: Date.now(),
     category: null,
-    purchasePrice: {price: '', unit: ''},
-    currentPrice: {price: '', unit: ''},
+    purchasePrice: {price: '', unit: unit.items[0]},
+    currentPrice: {price: '', unit: unit.items[0]},
     hasLoan: false,
-    loanPrice: {price: '', unit: ''},
+    loanPrice: {price: '', unit: unit.items[0]},
     interestRate: '',
-    repayment: {price: '', unit: ''},
+    repayment: {price: '', unit: unit.items[0]},
     compound: false,
     
   }));
@@ -86,8 +92,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
     }));
   }, []);
 
-  const cat = { name: "자산", items: ["집", "귀금속", "부동산", "땅"] };
-  const unit = { name: "단위", items: ["억원", "만원"] };
+
 
   return (
     <div className='setup-page'>
