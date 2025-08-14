@@ -17,7 +17,7 @@ export default function SetupAssetChangeRate({onPrev, onNext, assetList, setAsse
             {assetList
             .map(bundle => (
                 <RateItems
-                    menuName={bundle.selectedCategory}
+                    menuName={bundle.category}
                     unitName='%'
                 />
             ))
