@@ -25,7 +25,8 @@ export default function SetupAssets({onPrev, onNext, assetList, setAssetList}){
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [unitName, setUnitName] = useState("");
 
-
+    const cat =  { name: "자산", items: ["집", "귀금속", "부동산", "땅"]};
+    const unit = { name: "단위", items: ["억원", "만원"]};
 
     let nextId = 2;
 
@@ -33,10 +34,12 @@ export default function SetupAssets({onPrev, onNext, assetList, setAssetList}){
         setShowAssetInfo(true);
     }
     function handleComplete(){
+        const id = Date.now();
         setAssetList(prev => [
             ...prev,
             {
-                id: nextId++,
+                id,
+                category: selectedCategory,
                 purchasePrice,
                 currentPrice,
                 hasLoan,
@@ -44,7 +47,7 @@ export default function SetupAssets({onPrev, onNext, assetList, setAssetList}){
                 interestRate,
                 repayment,
                 compound: interest,
-                unitName
+                unitName,
             }
         ]);
         setShowAssetInfo(false);
@@ -52,8 +55,7 @@ export default function SetupAssets({onPrev, onNext, assetList, setAssetList}){
 
 
     function AssetInfo(){
-        const cat =  { name: "자산", items: ["집", "귀금속", "부동산", "땅"]};
-        const unit = { name: "단위", items: ["억원", "만원"]};
+        
         return(
             <div className='setup-page'>
 
