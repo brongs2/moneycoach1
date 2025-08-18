@@ -1,10 +1,12 @@
 import CategoryButton from "../components/CategoryButton";
 import GotoButton from "../components/GotoButton";
 import './Page.css';
+import DatePickerComponent from "../components/DatePicker";
+
 
 export default function Setupbasic({onNext, onPrev}){
 
-  const cat =  { name: "음악", items: ["K-POP", "락", "재즈"]};
+  const cat =  { name: "생년월일", items: ["K-POP", "락", "재즈"]};
   const cat2 =  { name: "성별", items: ["남성", "여성"]};
   const cat3 =  { name: "사용목적", items: ["재무 설계", "노후 계획"]};
   
@@ -14,11 +16,10 @@ export default function Setupbasic({onNext, onPrev}){
     
     <div className = "setup-page">
     <h1> 000님 <br/>머니코치에 오신 것을 환영합니다. </h1>
-    <CategoryButton 
-    items = {cat.items}
-    key={cat.name} 
-    title={cat.name}
-    size = "large"
+    <DatePickerComponent 
+      title = {cat.name}
+      key = {cat.name}
+      size = "large"
     />
     <CategoryButton 
     items = {cat2.items}
