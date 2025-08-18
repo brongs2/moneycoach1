@@ -31,12 +31,12 @@ export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetLi
             .map(bundle => (
               <ResultButton
                 key={bundle.id}
-                purchasePrice={bundle.purchasePrice}
-                currentPrice={bundle.currentPrice}
+                purchasePrice={bundle.purchasePrice.price + bundle.purchasePrice.unit}
+                currentPrice={bundle.currentPrice.price}
                 hasLoan={bundle.hasLoan}
-                loanPrice={bundle.loanPrice}
+                loanPrice={bundle.loanPrice.price}
                 interestRate={bundle.interestRate}
-                repayment={bundle.repayment}
+                repayment={bundle.repayment.price}
                 compound={bundle.compound}
               />
             ))}
