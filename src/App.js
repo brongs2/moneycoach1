@@ -10,9 +10,13 @@ export default function MyApp() {
   const onPrev = () => setState(state - 1);
 
   return (
-    <>
-      {state === 0 && <Setup onNext={onNext} onPrev={onPrev} />}
-      {state === 1 && <Plan onNext={onNext} onPrev={onPrev} />}
-    </>
-  );
+  <>
+    <div style={{ display: state === 0 ? 'block' : 'none' }}>
+      <Setup onNext={onNext} onPrev={onPrev} />
+    </div>
+    <div style={{ display: state === 1 ? 'block' : 'none' }}>
+      <Plan onNext={onNext} onPrev={onPrev} />
+    </div>
+  </>
+);
 }
