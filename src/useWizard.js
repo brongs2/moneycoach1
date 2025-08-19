@@ -31,8 +31,8 @@ export function useWizard() {
    */
   const handleNext = async ({ pageKey, data, onSaved }) => {
     console.log('[Wizard] handleNext', { pageKey, data });
-    if (pageKey === 'savings') {
-      await postJSON(`${API}/savings`, { savings: data });
+    if (pageKey === 'data') {
+      await postJSON(`${API}/data`, {data});
     } else if (pageKey === 'investments') {
       await postJSON(`${API}/investments`, { investments: data });
     } else {

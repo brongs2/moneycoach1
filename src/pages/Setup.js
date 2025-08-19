@@ -110,13 +110,12 @@ function SubmitStep({ onNext }) {
     console.log('[Submit] raw data:', raw);
 
     const p = norm(raw);
-    const investmentsPayload = norm(raw.investments);
 
     console.log('[Submit] normalized savings:', p);
  
 
     try {
-      // await handleNext({ pageKey: 'savings', data: savingsPayload, onSaved: onNext });
+      await handleNext({ pageKey: 'data', data: raw, onSaved: onNext });
       
     } catch (err) {
       console.error('[Submit] handleNext error:', err);
