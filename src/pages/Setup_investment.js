@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import Setupinvest1 from "./Setup_invest1";
 import Setupinvest2 from "./Setup_invest2";
+import { useContext } from "react";
+import { DataContext } from "../components/DataContext";
 
-export default function Setupinvestment({ onNext, onPrev }) {
+
+export default function Setupinvestment({ onNext, onPrev,investlists=[], setInvestlists}) {
+    const dataSet = useContext(DataContext);
+    
     const invest1Ref = useRef(null);
     const invest2Ref = useRef(null);
-
+    
     const [visibleStep2, setVisibleStep2] = useState(false);
     const title = visibleStep2? 
     <>투자 수익률을<br /> 설정해주세요</> : <>투자는<br/> 어떻게 하고 계신가요?</>;
@@ -55,7 +60,7 @@ export default function Setupinvestment({ onNext, onPrev }) {
         <div className="setup-scroll-wrapper"> 
             <div ref={invest1Ref}>
                 
-                <Setupinvest1 onPrev={onPrev} onNext={scrollToInvest2} />
+                <Setupinvest1 onPrev={onPrev} onNext={scrollToInvest2} investlists={investlists} setInvestlists ={setInvestlists} />
             </div>
             <div
                 ref={invest2Ref}

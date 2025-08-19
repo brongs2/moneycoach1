@@ -7,12 +7,8 @@ import "./Page.css";
 
 import { useState } from "react";
 
-export default function SetupSaving({ onPrev, onNext }) {
-  const { handleNext } = useWizard();
-
-  const [savinglists, setSavingLists] = useState([
-    { id: Date.now(), category: "일반 예금", amount: "", unit: "₩" },
-  ]);
+export default function SetupSaving({ onPrev, onNext, savinglists = [], setSavingLists }) {
+  
 
   const categories = ["일반 예금", "정기 예금", "적금"];
   const units = ["₩", "$", "€"];
@@ -35,24 +31,6 @@ export default function SetupSaving({ onPrev, onNext }) {
   };
 
   // ✅ 다음 단계: 저장 → onNext
-  const submit = async () => {
-    // 간단한 전처리/검증: 빈 항목 제거 + 금액 숫자화
-    console.log("send")
-    const payload = savinglists
-      .map(({ id, category, amount, unit }) => ({
-        id,
-        category,
-        unit,
-        amount: Number(amount) || 0,
-      }))
-      .filter((row) => row.category && row.unit);
-       console.log("📦 보내는 데이터:", payload); 
-    await handleNext({
-      pageKey: "savings",
-      data: payload,
-      onSaved: onNext,
-    });
-  };
 
   return (
     <div className="setup-page">
@@ -88,7 +66,7 @@ export default function SetupSaving({ onPrev, onNext }) {
           <GotoButton variant="left" onClick={onPrev}>
             이전
           </GotoButton>
-          <GotoButton variant="right" onClick={submit}>
+          <GotoButton variant="right" onClick={onNext}>
             다음
           </GotoButton>
         </div>
