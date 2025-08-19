@@ -3,12 +3,16 @@ import GotoButton from "../components/GotoButton";
 import CategoryBundle from "../components/CategoryBundle";
 import AddButton from "../components/AddButton";
 import { useWizard } from "../useWizard";
+import { useContext } from "react";
+import { useInvestments } from "../components/DataContext";
+
 
 import './Page.css';
 
 import { useState } from "react";
 
-export default function Setupinvest1({onPrev, onNext, investlists=[], setInvestlists}){
+export default function Setupinvest1({onPrev, onNext}){
+    const [ investlists=[], setInvestlists] = useInvestments();
     
     const categories = ['주식', '채권', '암호 화폐', '펀드'];
     const units = ['₩', '$', '€'];
