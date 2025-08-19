@@ -9,6 +9,7 @@ export default function Test() {
   const [err, setErr] = useState("");
 
   // GET: 목록 불러오기
+  load()
   const load = async () => {
     try {
       setLoading(true);
