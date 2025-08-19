@@ -1,5 +1,5 @@
 // src/hooks/useWizard.js
-const API = "http://127.0.0.1:8000";
+const API = "https://a4bca7db2aa0.ngrok-free.app";
 
 async function postJSON(url, body) {
   const res = await fetch(url, {

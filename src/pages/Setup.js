@@ -1,10 +1,10 @@
 import '../App.css';
-import Setupbasic from './Setup_basic';
-import SetupCheckAsset from './Setup_checkAsset';
-import Setupsaving from './Setup_savings'; 
-import Setupinvestment from './Setup_investment';
-import SetupMyAsset from './Setup_MyAsset';
-import SetupMyLoan from './Setup_MyLoan';
+import Setupbasic from './Setup_Basic';
+import SetupCheckAsset from './Setup_CheckAsset';
+import Setupsaving from './Setup_Savings'; 
+import Setupinvestment from './Setup_Investment';
+import SetupMyAsset from './Setup_Asset';
+import SetupMyLoan from './Setup_Loan';
 import {useState} from 'react';
 
 

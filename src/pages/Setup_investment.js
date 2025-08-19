@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Setupinvest1 from "./setup_invest1";
+import Setupinvest1 from "./Setup_invest1";
 import Setupinvest2 from "./Setup_invest2";
 
 export default function Setupinvestment({ onNext, onPrev }) {

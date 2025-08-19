@@ -40,6 +40,7 @@ export default function SetupSaving({ onPrev, onNext }) {
     console.log("send")
     const payload = savinglists
       .map(({ id, category, amount, unit }) => ({
+        id,
         category,
         unit,
         amount: Number(amount) || 0,

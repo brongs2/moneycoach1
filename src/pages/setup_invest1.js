@@ -2,12 +2,14 @@
 import GotoButton from "../components/GotoButton";
 import CategoryBundle from "../components/CategoryBundle";
 import AddButton from "../components/AddButton";
+import { useWizard } from "../useWizard";
 
 import './Page.css';
 
 import { useState } from "react";
 
-export default function Setupinvest1({onPrev, onNext}){  
+export default function Setupinvest1({onPrev, onNext}){
+    const {handleNext} = useWizard();  
     const [investlists, setInvestlists] = useState([
     {
       id : Date.now(), category : "주식", amount: "", unit: "₩"
@@ -15,6 +17,13 @@ export default function Setupinvest1({onPrev, onNext}){
   ]); 
     const categories = ['주식', '채권', '암호 화폐', '펀드'];
     const units = ['₩', '$', '€'];
+
+    const updateField = (idx, field, value) => {
+      setInvestlists((prev) =>
+        prev.map((s, i) => (i === idx ? { ...s, [field]: value } : s))
+      );
+    };
+
     const handleAddInvests = () => {
     setInvestlists([
       ...investlists,
@@ -26,7 +35,24 @@ export default function Setupinvest1({onPrev, onNext}){
     const handleRemove = (idx) => {
     setInvestlists(investlists.filter((_, i) => i !== idx));
   };
+    const submit = async () => {
 
+      console.log("send")
+      const payload = investlists
+      .map(({ id, category, amount, unit }) => ({
+        id,
+        category,
+        unit,
+        amount: Number(amount) || 0,
+      }))
+      .filter((row) => row.category && row.unit);
+       console.log("📦 보내는 데이터:", payload); 
+    await handleNext({
+      pageKey: "invest",
+      data: payload,
+      onSaved: onNext,
+    });
+    }
     
     return (
         <div style = {{display: "flex",
@@ -35,13 +61,21 @@ export default function Setupinvest1({onPrev, onNext}){
                         paddingBottom: "10vh", 
                         boxSizing: "border-box"}}>
             
-            {investlists.map((bundle, idx) => (
+            {investlists.map((row, idx) => (
+            <div key={row.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <CategoryBundle
-                key={bundle.id}
+              category={row.category}
+              amount = {row.amount}
+              unit=  {row.unit}
+                key={row.id}
                 menuItems={categories}
                 unitItems={units}
+                onChangeCategory={(v) => updateField(idx,'category',v)}
+                onChangeAmount={(v) => updateField(idx, 'amount',v)}
+                onChangeUnit={(v) => updateField(idx,'unit',v)}
                 onRemove={() => handleRemove(idx)}
             />
+            </div>
             ))}
 
             <AddButton
@@ -52,7 +86,7 @@ export default function Setupinvest1({onPrev, onNext}){
             <div className="nav-buttons">
                 <div className="goto-container">
                     <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
-                    <GotoButton variant="down" onClick={onNext}>다음</GotoButton>
+                    <GotoButton variant="down" onClick={submit}>다음</GotoButton>
                 </div>
             </div>
         </div>
