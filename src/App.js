@@ -2,7 +2,7 @@ import './App.css';
 import Setup from './pages/Setup';
 import Plan from './pages/Plan';
 import { useState } from 'react';
-
+import Test from './test';
 export default function MyApp() {
   const [state, setState] = useState(0);
 
