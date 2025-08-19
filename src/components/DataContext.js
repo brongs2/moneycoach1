@@ -12,21 +12,21 @@ const DebtsCtx = createContext();
 export function SetupDataProvider({ children }) {
   const [basic, setBasic] = useState({});
   const [checking, setChecking] = useState({});
-  const [savings, setSavings] = useState([]);         // 배열은 통째 교체 권장
+  const [saving, setSaving] = useState([]);         // 배열은 통째 교체 권장
   const [investments, setInvestments] = useState([]); // 배열은 통째 교체 권장
   const [assets, setAssets] = useState([]);  // changed from {} to []
   const [debts, setDebts] = useState({});
 
   // 읽기 전용 전체 데이터 필요할 때 사용(제출 등)
   const all = useMemo(
-    () => ({ basic, checking, savings, investments, assets, debts }),
-    [basic, checking, savings, investments, assets, debts]
+    () => ({ basic, checking, saving, investments, assets, debts }),
+    [basic, checking, saving, investments, assets, debts]
   );
 
   return (
     <BasicCtx.Provider value={[basic, setBasic]}>
       <CheckingCtx.Provider value={[checking, setChecking]}>
-        <SavingsCtx.Provider value={[savings, setSavings]}>
+        <SavingsCtx.Provider value={[saving, setSaving]}>
           <InvestmentsCtx.Provider value={[investments, setInvestments]}>
             <AssetsCtx.Provider value={[assets, setAssets]}>
               <DebtsCtx.Provider value={[debts, setDebts]}>
@@ -55,13 +55,13 @@ export const useDebts = () => useContext(DebtsCtx);
 export function useAllSetupData() {
   const [basic] = useBasic();
   const [checking] = useChecking();
-  const [savings] = useSavings();
+  const [saving] = useSavings();
   const [investments] = useInvestments();
   const [assets] = useAssets();
   const [debts] = useDebts();
   return useMemo(
-    () => ({ basic, checking, savings, investments, assets, debts }),
-    [basic, checking, savings, investments, assets, debts]
+    () => ({ basic, checking, saving, investments, assets, debts }),
+    [basic, checking, saving, investments, assets, debts]
   );
 }
 
