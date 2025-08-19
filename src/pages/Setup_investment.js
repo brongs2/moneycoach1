@@ -1,12 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Setupinvest1 from "./Setup_invest1";
 import Setupinvest2 from "./Setup_invest2";
-import { useContext } from "react";
-import { DataContext } from "../components/DataContext";
-
 
 export default function Setupinvestment({ onNext, onPrev,investlists=[], setInvestlists}) {
-    const dataSet = useContext(DataContext);
     
     const invest1Ref = useRef(null);
     const invest2Ref = useRef(null);

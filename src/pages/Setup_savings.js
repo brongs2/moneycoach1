@@ -1,15 +1,17 @@
-// src/pages/SetupSaving.jsx
+// src/pages/Setup_savings.js
 import GotoButton from "../components/GotoButton";
 import CategoryBundle from "../components/CategoryBundle";
 import AddButton from "../components/AddButton";
 import { useWizard } from "../useWizard";   // ✅ 공용 훅
+import { useContext } from "react";
+import { useSavings } from "../components/DataContext";
 import "./Page.css";
 
 import { useState } from "react";
 
-export default function SetupSaving({ onPrev, onNext, savinglists = [], setSavingLists }) {
+export default function SetupSaving({ onPrev, onNext }) {
   
-
+  const [savinglists = [], setSavingLists] = useSavings();
   const categories = ["일반 예금", "정기 예금", "적금"];
   const units = ["₩", "$", "€"];
 

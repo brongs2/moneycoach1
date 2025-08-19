@@ -5,14 +5,18 @@ import './Page.css';
 import CategoryButton from '../components/CategoryButton';
 import GotoButton from '../components/GotoButton';
 import ResultButton from '../components/ResultButton';
-
-
+import { useContext } from "react";
+import { useAssets } from "../components/DataContext";
 
 const cat = { name: "자산", items: ["집", "귀금속", "부동산", "땅"] };
 const unit = { name: "단위", items: ["억원", "만원"] };
 
 
-export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetList = () => {} }) {
+export default function SetupAssets({ onPrev, onNext }) {
+  
+  const [ assetList = [], setAssetList = () => {}] = useAssets();
+  const safeAssetList = Array.isArray(assetList) ? assetList : [];
+  
   const [showAssetInfo, setShowAssetInfo] = useState(false);
 
   const handleAddClick = () => {
@@ -20,7 +24,7 @@ export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetLi
   };
 
   const handleComplete = useCallback((draft) => {
-    setAssetList(prev => [...prev, draft]);  // ✅ 완료 시에만 부모 갱신
+    setAssetList(prev => [...(Array.isArray(prev) ? prev : []), draft]);  // ✅ 완료 시에만 부모 갱신
     setShowAssetInfo(false);
   }, [setAssetList]);
 
@@ -32,7 +36,7 @@ export default function SetupAssets({ onPrev, onNext, assetList = [], setAssetLi
         <>
           <h1>어떤 자산을 <br />가지고 계신가요?</h1>
 
-          {assetList
+          {safeAssetList
             .filter(bundle => bundle.id > 1)
             .map(bundle => (
               <ResultButton
