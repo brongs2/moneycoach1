@@ -91,7 +91,7 @@ import { useState, useCallback } from 'react';
 import { useWizard } from '../useWizard';
 import { SetupDataProvider, useAllSetupData } from '../components/DataContext';
 
-function SubmitStep({ onNext }) {
+function SubmitStep({ onNext, onPrev }) {
   const { handleNext } = useWizard();
   const data = useAllSetupData();
 
@@ -123,7 +123,7 @@ function SubmitStep({ onNext }) {
     }
   }, [data, handleNext, onNext]);
   
-  return <SetupMyLoan onNext={submit} onPrev={() => { /* 필요 시 */ }} />;
+  return <SetupMyLoan onNext={submit} onPrev={onPrev} />;
 }
 
 export default function Setup({ onNext, onPrev }) {

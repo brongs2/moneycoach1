@@ -10,8 +10,7 @@ const AssetsCtx = createContext();
 const DebtsCtx = createContext();
 
 export function SetupDataProvider({ children }) {
-  const [basic, setBasic] = useState({});
-  const [checking, setChecking] = useState({});
+  const [personal, setPersonal] = useState({});
   const [saving, setSaving] = useState([]);         // 배열은 통째 교체 권장
   const [investment, setInvestment] = useState([]); // 배열은 통째 교체 권장
   const [asset, setAsset] = useState([]);  // changed from {} to []
@@ -19,13 +18,12 @@ export function SetupDataProvider({ children }) {
 
   // 읽기 전용 전체 데이터 필요할 때 사용(제출 등)
   const all = useMemo(
-    () => ({ basic, checking, saving, investment, asset, debt }),
-    [basic, checking, saving, investment, asset, debt]
+    () => ({ personal, saving, investment, asset, debt }),
+    [personal, saving, investment, asset, debt]
   );
 
   return (
-    <BasicCtx.Provider value={[basic, setBasic]}>
-      <CheckingCtx.Provider value={[checking, setChecking]}>
+    <BasicCtx.Provider value={[personal, setPersonal]}>
         <SavingsCtx.Provider value={[saving, setSaving]}>
           <InvestmentsCtx.Provider value={[investment, setInvestment]}>
             <AssetsCtx.Provider value={[asset, setAsset]}>
@@ -38,7 +36,6 @@ export function SetupDataProvider({ children }) {
             </AssetsCtx.Provider>
           </InvestmentsCtx.Provider>
         </SavingsCtx.Provider>
-      </CheckingCtx.Provider>
     </BasicCtx.Provider>
   );
 }
@@ -53,15 +50,14 @@ export const useDebts = () => useContext(DebtsCtx);
 
 /** 제출용: 전체 읽기 */
 export function useAllSetupData() {
-  const [basic] = useBasic();
-  const [checking] = useChecking();
+  const [personal] = useBasic();
   const [saving] = useSavings();
   const [investment] = useInvestments();
   const [asset] = useAssets();
   const [debt] = useDebts();
   return useMemo(
-    () => ({ basic, checking, saving, investment, asset, debt }),
-    [basic, checking, saving, investment, asset, debt]
+    () => ({ personal,  saving, investment, asset, debt }),
+    [personal,  saving, investment, asset, debt]
   );
 }
 
