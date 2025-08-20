@@ -32,10 +32,8 @@ export function useWizard() {
   const handleNext = async ({ pageKey, data, onSaved }) => {
     console.log('[Wizard] handleNext', { pageKey, data });
     if (pageKey === 'data') {
-      await postJSON(`${API}/data`, {data});
-    } else if (pageKey === 'investments') {
-      await postJSON(`${API}/investments`, { investments: data });
-    } else {
+      await postJSON(`${API}/data`, data);
+    }  else {
       console.warn('[Wizard] Unknown pageKey, no API call performed:', pageKey);
     }
     await onSaved?.();
