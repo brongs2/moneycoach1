@@ -115,13 +115,13 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
                 inputMode="numeric"
                 placeholder="0"
                 value={draft.loanPrice.price}
-                onChange={e => updateMoney('loanPrice', 'price', e.target.value)}
+                onChange={e => updateMoney('loan_price', 'amount', e.target.value)}
             />
             <CategoryButton
                 items={unit.items}
                 size="small"
                 selected={draft.loanPrice.unit}
-                onSelect={v => updateMoney('loanPrice', 'unit', v)}
+                onSelect={v => updateMoney('loan_price', 'unit', v)}
             />
             </div>
         </InputBlock>

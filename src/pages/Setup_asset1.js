@@ -119,13 +119,13 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
               inputMode="numeric"
               placeholder="0"
               value={draft.purchasePrice.price}
-              onChange={e => updateMoney('purchasePrice', 'price', e.target.value)}
+              onChange={e => updateMoney('purchase_price', 'amount', e.target.value)}
             />
             <CategoryButton
               items={unit.items}
               size="small"
               selected={draft.purchasePrice.unit}
-              onSelect={v => updateMoney('purchasePrice', 'unit', v)}
+              onSelect={v => updateMoney('purchase_price', 'unit', v)}
             />
           </div>
         </InputBlock>
@@ -137,13 +137,13 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
               inputMode="numeric"
               placeholder="0"
               value={draft.currentPrice.price}
-              onChange={e => updateMoney('currentPrice', 'price', e.target.value)}
+              onChange={e => updateMoney('current_price', 'amount', e.target.value)}
             />
             <CategoryButton
               items={unit.items}
               size="small"
               selected={draft.currentPrice.unit}
-              onSelect={v => updateMoney('currentPrice', 'unit', v)}
+              onSelect={v => updateMoney('current_price', 'unit', v)}
             />
           </div>
         </InputBlock>
@@ -156,7 +156,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
             <input
               type="checkbox"
               checked={draft.hasLoan}
-              onChange={e => update('hasLoan', e.target.checked)}
+              onChange={e => update('has_loan', e.target.checked)}
             />
             <span className="slider" />
             <span className="toggle-text">{draft.hasLoan ? '예' : '아니오'}</span>
@@ -172,13 +172,13 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
                   inputMode="numeric"
                   placeholder="0"
                   value={draft.loanPrice.price}
-                  onChange={e => updateMoney('loanPrice', 'price', e.target.value)}
+                  onChange={e => updateMoney('loan_price', 'amount', e.target.value)}
                 />
                 <CategoryButton
                   items={unit.items}
                   size="small"
                   selected={draft.loanPrice.unit}
-                  onSelect={v => updateMoney('loanPrice', 'unit', v)}
+                  onSelect={v => updateMoney('loan_price', 'unit', v)}
                 />
               </div>
             </InputBlock>
@@ -190,7 +190,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
                   inputMode="numeric"
                   placeholder="0"
                   value={draft.interestRate}
-                  onChange={e => update('interestRate', e.target.value)}
+                  onChange={e => update('interest_rate', e.target.value)}
                 />
                 %
                 <label className="toggle">
@@ -212,7 +212,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
                   inputMode="numeric"
                   placeholder="0"
                   value={draft.repayment.price}
-                  onChange={e => updateMoney('repayment', 'price', e.target.value)}
+                  onChange={e => updateMoney('repayment', 'amount', e.target.value)}
                 />
                 <CategoryButton
                   items={unit.items}

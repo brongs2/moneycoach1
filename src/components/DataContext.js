@@ -13,23 +13,23 @@ export function SetupDataProvider({ children }) {
   const [basic, setBasic] = useState({});
   const [checking, setChecking] = useState({});
   const [saving, setSaving] = useState([]);         // 배열은 통째 교체 권장
-  const [investments, setInvestments] = useState([]); // 배열은 통째 교체 권장
-  const [assets, setAssets] = useState([]);  // changed from {} to []
-  const [debts, setDebts] = useState({});
+  const [investment, setInvestment] = useState([]); // 배열은 통째 교체 권장
+  const [asset, setAsset] = useState([]);  // changed from {} to []
+  const [debt, setDebt] = useState({});
 
   // 읽기 전용 전체 데이터 필요할 때 사용(제출 등)
   const all = useMemo(
-    () => ({ basic, checking, saving, investments, assets, debts }),
-    [basic, checking, saving, investments, assets, debts]
+    () => ({ basic, checking, saving, investment, asset, debt }),
+    [basic, checking, saving, investment, asset, debt]
   );
 
   return (
     <BasicCtx.Provider value={[basic, setBasic]}>
       <CheckingCtx.Provider value={[checking, setChecking]}>
         <SavingsCtx.Provider value={[saving, setSaving]}>
-          <InvestmentsCtx.Provider value={[investments, setInvestments]}>
-            <AssetsCtx.Provider value={[assets, setAssets]}>
-              <DebtsCtx.Provider value={[debts, setDebts]}>
+          <InvestmentsCtx.Provider value={[investment, setInvestment]}>
+            <AssetsCtx.Provider value={[asset, setAsset]}>
+              <DebtsCtx.Provider value={[debt, setDebt]}>
                 {/* all 을 하위에서 쓸 수 있게 children에 prop으로 전달하는 대신,
                     훅으로 노출 */}
                 {children}
@@ -56,12 +56,12 @@ export function useAllSetupData() {
   const [basic] = useBasic();
   const [checking] = useChecking();
   const [saving] = useSavings();
-  const [investments] = useInvestments();
-  const [assets] = useAssets();
-  const [debts] = useDebts();
+  const [investment] = useInvestments();
+  const [asset] = useAssets();
+  const [debt] = useDebts();
   return useMemo(
-    () => ({ basic, checking, saving, investments, assets, debts }),
-    [basic, checking, saving, investments, assets, debts]
+    () => ({ basic, checking, saving, investment, asset, debt }),
+    [basic, checking, saving, investment, asset, debt]
   );
 }
 
