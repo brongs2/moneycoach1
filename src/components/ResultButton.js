@@ -3,8 +3,9 @@ import './ResultButton.css';
 
 
 
-export default function ResultButton({purchasePrice, currentPrice, hasloan, loanPrice, interestRate, repayment}){
+export default function ResultButton({purchasePrice, currentPrice, hasloan, loanPrice, interestRate, repayment, variant}){
     function LittleComponents({title, value}){
+        
         return(
             <div className='little-components'>
             <div style = {{color:"#333333", fontFamily:"Pretendard", fontWeight:"400", fontSize:"16px"}}>{title}</div>
@@ -12,7 +13,19 @@ export default function ResultButton({purchasePrice, currentPrice, hasloan, loan
             </div>
         );
     }
+    if (variant === 'debt') {
+            return (
+                <div className='result-button'>
+                    <div className='inline-field'>
+                        <LittleComponents title="대출금" value={loanPrice}/> 
+                        <LittleComponents title="이자율" value={interestRate}/> 
+                        <LittleComponents title = '월 상환액' value = {repayment}/>
+                    </div>
+                </div>
+            );
+        }
     return(
+        
         <div className='result-button'>
             <div className='inline-field'>
                 <LittleComponents

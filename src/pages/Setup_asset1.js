@@ -12,9 +12,9 @@ const cat = { name: "자산", items: ["집", "귀금속", "부동산", "땅"] };
 const unit = { name: "단위", items: ["억원", "만원"] };
 
 
-export default function SetupAssets({ onPrev, onNext }) {
+export default function SetupAssets({ onPrev, onNext,assetList,setAssetList }) {
   
-  const [ assetList = [], setAssetList = () => {}] = useAssets();
+  
   const safeAssetList = Array.isArray(assetList) ? assetList : [];
   
   const [showAssetInfo, setShowAssetInfo] = useState(false);
@@ -41,12 +41,12 @@ export default function SetupAssets({ onPrev, onNext }) {
             .map(bundle => (
               <ResultButton
                 key={bundle.id}
-                purchasePrice={bundle.purchasePrice.price + bundle.purchasePrice.unit}
-                currentPrice={bundle.currentPrice.price + bundle.currentPrice.unit}
+                purchasePrice={bundle.purchasePrice.amount + bundle.purchasePrice.unit}
+                currentPrice={bundle.currentPrice.amount + bundle.currentPrice.unit}
                 hasLoan={bundle.hasLoan}
-                loanPrice={bundle.loanPrice.price + bundle.loanPrice.unit}
+                loanPrice={bundle.loanPrice.amount + bundle.loanPrice.unit}
                 interestRate={bundle.interestRate}
-                repayment={bundle.repayment.price + bundle.repayment.unit}
+                repayment={bundle.repayment.amount + bundle.repayment.unit}
                 compound={bundle.compound}
               />
             ))}
@@ -72,12 +72,12 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
   const [draft, setDraft] = useState(() => ({
     id: Date.now(),
     category: null,
-    purchasePrice: {price: '', unit: unit.items[0]},
-    currentPrice: {price: '', unit: unit.items[0]},
+    purchasePrice: {amount: '', unit: unit.items[0]},
+    currentPrice: {amount: '', unit: unit.items[0]},
     hasLoan: false,
-    loanPrice: {price: '', unit: unit.items[0]},
+    loanPrice: {amount: '', unit: unit.items[0]},
     interestRate: '',
-    repayment: {price: '', unit: unit.items[0]},
+    repayment: {amount: '', unit: unit.items[0]},
     compound: false,
     
   }));
@@ -118,7 +118,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
               type="text"
               inputMode="numeric"
               placeholder="0"
-              value={draft.purchasePrice.price}
+              value={draft.purchasePrice.amount}
               onChange={e => updateMoney('purchasePrice', 'amount', e.target.value)}
             />
             <CategoryButton
@@ -136,7 +136,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
               type="text"
               inputMode="numeric"
               placeholder="0"
-              value={draft.currentPrice.price}
+              value={draft.currentPrice.amount}
               onChange={e => updateMoney('currentPrice', 'amount', e.target.value)}
             />
             <CategoryButton
@@ -171,7 +171,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
                   type="text"
                   inputMode="numeric"
                   placeholder="0"
-                  value={draft.loanPrice.price}
+                  value={draft.loanPrice.amount}
                   onChange={e => updateMoney('loanPrice', 'amount', e.target.value)}
                 />
                 <CategoryButton
@@ -211,7 +211,7 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
                   type="text"
                   inputMode="numeric"
                   placeholder="0"
-                  value={draft.repayment.price}
+                  value={draft.repayment.amount}
                   onChange={e => updateMoney('repayment', 'amount', e.target.value)}
                 />
                 <CategoryButton

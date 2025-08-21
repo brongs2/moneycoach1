@@ -36,13 +36,11 @@ const [loanList, setLoanList] = useState([]);
             .filter(bundle => bundle.id > 1)
             .map(bundle => (
               <ResultButton
+                variant = 'debt'
                 key={bundle.id}
-                purchasePrice={bundle.purchasePrice.price + bundle.purchasePrice.unit}
-                currentPrice={bundle.currentPrice.price + bundle.currentPrice.unit}
-                hasLoan={bundle.hasLoan}
-                loanPrice={bundle.loanPrice.price + bundle.loanPrice.unit}
+                loanPrice={bundle.loanPrice.amount + bundle.loanPrice.unit}
                 interestRate={bundle.interestRate}
-                repayment={bundle.repayment.price + bundle.repayment.unit}
+                repayment={bundle.repayment.amount + bundle.repayment.unit}
                 compound={bundle.compound}
               />
             ))}
@@ -54,7 +52,7 @@ const [loanList, setLoanList] = useState([]);
           <div className="nav-buttons">
             <div className='goto-container'>
               <GotoButton variant="left" onClick={onPrev}>이전</GotoButton>
-              <GotoButton variant="right" onClick={onNext}>다음</GotoButton>
+              <GotoButton variant="right" onClick={() => onNext(loanList)}>다음</GotoButton>
             </div>
           </div>
         </>
@@ -68,12 +66,9 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
   const [draft, setDraft] = useState(() => ({
     id: Date.now(),
     category: null,
-    purchasePrice: {price: '', unit: unit.items[0]},
-    currentPrice: {price: '', unit: unit.items[0]},
-    hasLoan: false,
-    loanPrice: {price: '', unit: unit.items[0]},
+    loanPrice: {amount: '', unit: unit.items[0]},
     interestRate: '',
-    repayment: {price: '', unit: unit.items[0]},
+    repayment: {amount: '', unit: unit.items[0]},
     compound: false,
     
   }));
@@ -114,14 +109,14 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
                 type="text"
                 inputMode="numeric"
                 placeholder="0"
-                value={draft.loanPrice.price}
-                onChange={e => updateMoney('loan_price', 'amount', e.target.value)}
+                value={draft.loanPrice.amount}
+                onChange={e => updateMoney('loanPrice', 'amount', e.target.value)}
             />
             <CategoryButton
                 items={unit.items}
                 size="small"
                 selected={draft.loanPrice.unit}
-                onSelect={v => updateMoney('loan_price', 'unit', v)}
+                onSelect={v => updateMoney('loanPrice', 'unit', v)}
             />
             </div>
         </InputBlock>
@@ -154,8 +149,8 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
                 type="text"
                 inputMode="numeric"
                 placeholder="0"
-                value={draft.repayment.price}
-                onChange={e => updateMoney('repayment', 'price', e.target.value)}
+                value={draft.repayment.amount}
+                onChange={e => updateMoney('repayment', 'amount', e.target.value)}
             />
             <CategoryButton
                 items={unit.items}

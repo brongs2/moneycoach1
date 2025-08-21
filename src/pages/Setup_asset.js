@@ -2,10 +2,12 @@
 import { useState } from "react";
 import SetupAssets from "./Setup_asset1";
 import SetupAssetChangeRate from "./Setup_asset2";
+import { useAssets } from "../components/DataContext";
+
 
 export default function SetupMyAsset({onPrev, onNext}) {
   // shared state lives here
-  const [assetList, setAssetList] = useState([]);
+  const [ assetList = [], setAssetList = () => {}] = useAssets();
   // simple step toggle: 'asset' | 'changeRate'
   const [step, setStep] = useState("asset");
 

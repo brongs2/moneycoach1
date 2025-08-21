@@ -81,7 +81,7 @@
 // }
 
 
-import Setupbasic from './Setup_Basic';
+import SetupPersonal from './Setup_Personal';
 import SetupCheckAsset from './Setup_Checking';
 import Setupsaving from './Setup_Savings';
 import Setupinvestment from './Setup_Investment';
@@ -95,28 +95,18 @@ function SubmitStep({ onNext, onPrev }) {
   const { handleNext } = useWizard();
   const data = useAllSetupData();
 
-  const submit = useCallback(async () => {
-    const norm = (rows = []) =>
-      (Array.isArray(rows) ? rows : [])
-        .map(({ id, category, amount, unit }) => ({
-          id,
-          category,
-          unit,
-          amount: Number(amount) || 0,
-        }))
-        .filter((r) => r.category && r.unit);
+  const submit = useCallback(async (debtList = []) => {
+    const ensureArray = (v) => (Array.isArray(v) ? v : []);
+    // 기존 데이터 컨텍스트 + 부채 리스트를 합쳐서 전송
+    const payload = {
+      ...data,
+      debt: ensureArray(debtList),
+    };
 
-    const raw = data;
-    console.log('[Submit] raw data:', raw);
-
-    const p = norm(raw);
-
-    console.log('[Submit] normalized savings:', p);
- 
+    console.log('[Submit] payload:', payload);
 
     try {
-      await handleNext({ pageKey: 'data', data: raw, onSaved: onNext });
-      
+      await handleNext({ pageKey: 'data', data: payload, onSaved: onNext });
     } catch (err) {
       console.error('[Submit] handleNext error:', err);
       alert('저장 중 오류가 발생했습니다. 개발자 콘솔을 확인하세요.');
@@ -132,7 +122,7 @@ export default function Setup({ onNext, onPrev }) {
   return (
     <SetupDataProvider>
       <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <Setupbasic onNext={() => setStep(1)} onPrev={onPrev} />
+        <SetupPersonal onNext={() => setStep(1)} onPrev={onPrev} />
       </div>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
         <SetupCheckAsset onNext={() => setStep(2)} onPrev={() => setStep(0)} />
@@ -147,7 +137,7 @@ export default function Setup({ onNext, onPrev }) {
         <SetupMyAsset onNext={() => setStep(5)} onPrev={() => setStep(3)} />
       </div>
       <div style={{ display: step === 5 ? 'block' : 'none' }}>
-        <SubmitStep onNext={onNext} />
+        <SubmitStep onNext={onNext} onPrev={() => setStep(4)} />
       </div>
     </SetupDataProvider>
   );

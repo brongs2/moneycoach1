@@ -8,7 +8,7 @@ export default function CategoryButton({
   size = 'medium',
   selected,          // ✅ 부모가 내려주는 선택값 사용
   onSelect,
-  disabled = false,  // (선택) ratio 화면에서 읽기전용으로 쓰고 싶을 때
+  disabled = false,  // (선택) ratio 화면에서 읽기전용으로 쓰고 싶을 때  
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const sizeClass = `category ${size}`;

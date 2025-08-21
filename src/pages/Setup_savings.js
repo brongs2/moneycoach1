@@ -24,7 +24,7 @@ export default function SetupSaving({ onPrev, onNext }) {
   const handleAddSavings = () => {
     setSavingLists((prev) => [
       ...prev,
-      { id: Date.now(), category: "일반 예금", amount: "", unit: "₩" },
+      { id: Date.now(), category: "일반 예금", amount: 0, unit: "₩" },
     ]);
   };
 
