@@ -39,7 +39,7 @@ import './CategoryButton.css';
 // Controlled DatePicker wrapper:
 //  - value: Date | null
 //  - onChange: (date: Date | null) => void
-export default function DatePickerComponent({ title, size = 'large', value, onChange }) {
+export default function DatePickerComponent({ title, size = 'large', value, onChange}) {
   const inputClass = `category-trigger category ${size}`;
   const wrapperClass = `dp-scope ${size}`;
 
@@ -53,6 +53,7 @@ export default function DatePickerComponent({ title, size = 'large', value, onCh
         onChange={onChange}
         dateFormat="yyyy/MM/dd"
         placeholderText="날짜를 선택하세요"
+        
       />
     </div>
   );

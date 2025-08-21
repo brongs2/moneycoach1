@@ -30,9 +30,9 @@ export default function SetupPersonal({onNext, onPrev}){
       title={cat.name}
       key={cat.name}
       size="large"
-      value={personalList?.birthDate ?? null}
+      value={personalList?.birth ?? null}
       onChange={handleBirthChange}
-      selected = {personalList.birthDate}
+      
     />
     <CategoryButton 
     items = {cat2.items}
@@ -40,7 +40,7 @@ export default function SetupPersonal({onNext, onPrev}){
     title={cat2.name}
     size = "large"
     onSelect={handleSelectGender}
-    seelcted = {personalList.purpose}
+    selected = {personalList?.gender}
     />
     <CategoryButton 
     items = {cat3.items}
@@ -48,7 +48,7 @@ export default function SetupPersonal({onNext, onPrev}){
     title={cat3.name}
     size = "large"
     onSelect={handleSelectPurpose}
-    selected={personalList.purpose}
+    selected={personalList?.purpose}
     />
     <div className="nav-buttons">
       <div className = 'goto-container'>
