@@ -72,12 +72,12 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
   const [draft, setDraft] = useState(() => ({
     id: Date.now(),
     category: null,
-    purchasePrice: {amount: '', unit: unit.items[0]},
-    currentPrice: {amount: '', unit: unit.items[0]},
+    purchasePrice: {amount: 0, unit: unit.items[0]},
+    currentPrice: {amount: 0, unit: unit.items[0]},
     hasLoan: false,
-    loanPrice: {amount: '', unit: unit.items[0]},
-    interestRate: '',
-    repayment: {amount: '', unit: unit.items[0]},
+    loanPrice: {amount: 0, unit: unit.items[0]},
+    interestRate: 0,
+    repayment: {amount: 0, unit: unit.items[0]},
     compound: false,
     
   }));
@@ -96,6 +96,17 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
     }));
   }, []);
 
+  const onNumChange = useCallback((field, key) => (e) => {
+    const n = e.target.valueAsNumber;
+    const next = Number.isNaN(n) ? 0 : n; // empty -> 0
+    updateMoney(field, key, next);
+  }, [updateMoney]);
+
+  const onRateChange = useCallback((e) => {
+    const n = e.target.valueAsNumber;
+    const next = Number.isNaN(n) ? 0 : n; // empty -> 0
+    update('interestRate', next);
+  }, [update]);
 
 
   return (
@@ -115,11 +126,11 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
         <InputBlock label='구매가'>
           <div className='inline-field'>
             <input
-              type="text"
+              type="number"
               inputMode="numeric"
               placeholder="0"
               value={draft.purchasePrice.amount}
-              onChange={e => updateMoney('purchasePrice', 'amount', e.target.value)}
+              onChange={onNumChange('purchasePrice', 'amount')}
             />
             <CategoryButton
               items={unit.items}
@@ -133,11 +144,11 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
         <InputBlock label='현재 싯가'>
           <div className='inline-field'>
             <input
-              type="text"
+              type="number"
               inputMode="numeric"
               placeholder="0"
               value={draft.currentPrice.amount}
-              onChange={e => updateMoney('currentPrice', 'amount', e.target.value)}
+              onChange={onNumChange('currentPrice', 'amount')}
             />
             <CategoryButton
               items={unit.items}
@@ -168,11 +179,11 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
             <InputBlock label='대출금'>
               <div className='inline-field'>
                 <input
-                  type="text"
+                  type="number"
                   inputMode="numeric"
                   placeholder="0"
                   value={draft.loanPrice.amount}
-                  onChange={e => updateMoney('loanPrice', 'amount', e.target.value)}
+                  onChange={onNumChange('loanPrice', 'amount')}
                 />
                 <CategoryButton
                   items={unit.items}
@@ -186,11 +197,11 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
             <InputBlock label='이자율'>
               <div className='inline-field'>
                 <input
-                  type="text"
+                  type="number"
                   inputMode="numeric"
                   placeholder="0"
                   value={draft.interestRate}
-                  onChange={e => update('interestRate', e.target.value)}
+                  onChange={onRateChange}
                 />
                 %
                 <label className="toggle">
@@ -208,11 +219,11 @@ const AssetInfo = memo(function AssetInfo({ onComplete, onCancel }) {
             <InputBlock label='월 상환액'>
               <div className='inline-field'>
                 <input
-                  type="text"
+                  type="number"
                   inputMode="numeric"
                   placeholder="0"
                   value={draft.repayment.amount}
-                  onChange={e => updateMoney('repayment', 'amount', e.target.value)}
+                  onChange={onNumChange('repayment', 'amount')}
                 />
                 <CategoryButton
                   items={unit.items}

@@ -27,14 +27,18 @@ export default function Setupinvest1({onPrev, onNext}){
     setInvestlists([
       ...investlists,
       {
-      id : Date.now(), category : "주식", amount: "", unit: "₩"
+      id : Date.now(), category : "주식", amount: 0, unit: "₩"
     }
     ]);
   }
     const handleRemove = (idx) => {
     setInvestlists(investlists.filter((_, i) => i !== idx));
   };
-   
+    const handleAmountChange = (idx) => (e) => {
+    const n = e.target.valueAsNumber;
+    const next = Number.isNaN(n) ? 0 : n;
+    updateField(idx, "amount", next);
+  };
     
     return (
         <div style = {{display: "flex",
@@ -53,7 +57,7 @@ export default function Setupinvest1({onPrev, onNext}){
                 menuItems={categories}
                 unitItems={units}
                 onChangeCategory={(v) => updateField(idx,'category',v)}
-                onChangeAmount={(v) => updateField(idx, 'amount',v)}
+                onChangeAmount={handleAmountChange(idx)}
                 onChangeUnit={(v) => updateField(idx,'unit',v)}
                 onRemove={() => handleRemove(idx)}
             />

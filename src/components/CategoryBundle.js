@@ -24,8 +24,9 @@ export default function CategoryBundle({
 
       <input
         type="number"
+        inputMode="decimal"
         value={amount}
-        onChange={(e) => onChangeAmount?.(e.target.value)}
+        onChange={(e) => onChangeAmount?.(e)}
         className="amount-input control"
         placeholder="0"
       />

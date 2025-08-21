@@ -48,6 +48,9 @@ export const useInvestments = () => useContext(InvestmentsCtx);
 export const useAssets = () => useContext(AssetsCtx);
 export const useDebts = () => useContext(DebtsCtx);
 
+
+
+
 /** 제출용: 전체 읽기 */
 export function useAllSetupData() {
   const [personal] = useBasic();
@@ -55,6 +58,13 @@ export function useAllSetupData() {
   const [investment] = useInvestments();
   const [asset] = useAssets();
   const [debt] = useDebts();
+
+  const cleanSaving = saving.map(({ id, ...rest }) => rest);
+  const cleanInvestment = investment.map(({ id, ...rest }) => rest);
+  const cleanAsset = asset.map(({ id, ...rest }) => rest);
+  const cleanDebt = Array.isArray(debt) 
+    ? debt.map(({ id, ...rest }) => rest) 
+    : debt; // debt가 배열인지 객체인지에 따라 조정
   return useMemo(
     () => ({ personal,  saving, investment, asset, debt }),
     [personal,  saving, investment, asset, debt]

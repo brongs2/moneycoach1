@@ -21,6 +21,13 @@ export default function SetupSaving({ onPrev, onNext }) {
     );
   };
 
+  // Helper: always store number for amount (default to 0 if empty)
+  const handleAmountChange = (idx) => (e) => {
+    const n = e.target.valueAsNumber;
+    const next = Number.isNaN(n) ? 0 : n;
+    updateField(idx, "amount", next);
+  };
+
   const handleAddSavings = () => {
     setSavingLists((prev) => [
       ...prev,
@@ -52,7 +59,7 @@ export default function SetupSaving({ onPrev, onNext }) {
             menuItems={categories}
             unitItems={units}
             onChangeCategory={(v) => updateField(idx, "category", v)}
-            onChangeAmount={(v) => updateField(idx, "amount", v)}
+            onChangeAmount={handleAmountChange(idx)}
             onChangeUnit={(v) => updateField(idx, "unit", v)}
             onRemove={() => handleRemove(idx)}
           />

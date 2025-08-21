@@ -1,4 +1,4 @@
-import { useState, useCallback, memo, useRef } from 'react';
+import { useState, useCallback, memo } from 'react';
 import AddButton from '../components/AddButton';
 import InputBlock from "../components/InputBlock";
 import './Page.css';
@@ -32,18 +32,16 @@ const [loanList, setLoanList] = useState([]);
         <>
           <h1>현재 가지고 있는 <br />부채를 써주세요.</h1>
 
-          {loanList
-            .filter(bundle => bundle.id > 1)
-            .map(bundle => (
-              <ResultButton
-                variant = 'debt'
-                key={bundle.id}
-                loanPrice={bundle.loanPrice.amount + bundle.loanPrice.unit}
-                interestRate={bundle.interestRate}
-                repayment={bundle.repayment.amount + bundle.repayment.unit}
-                compound={bundle.compound}
-              />
-            ))}
+          {loanList.map(bundle => (
+            <ResultButton
+              key={bundle.id}
+              variant="debt"
+              category={bundle.category}
+              loanPrice={bundle.loanPrice}
+              interestRate={bundle.interestRate}
+              repayment={bundle.repayment}
+            />
+          ))}
 
           <AddButton className='add link' onClick={handleAddClick}>
             + 부채 추가하기
@@ -66,9 +64,9 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
   const [draft, setDraft] = useState(() => ({
     id: Date.now(),
     category: null,
-    loanPrice: {amount: '', unit: unit.items[0]},
-    interestRate: '',
-    repayment: {amount: '', unit: unit.items[0]},
+    loanPrice: {amount: 0, unit: unit.items[0]},
+    interestRate: 0,
+    repayment: {amount: 0, unit: unit.items[0]},
     compound: false,
     
   }));
@@ -87,6 +85,17 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
     }));
   }, []);
 
+  const onNumChange = useCallback((field, key) => (e) => {
+    const n = e.target.valueAsNumber;
+    const next = Number.isNaN(n) ? 0 : n; // empty -> 0
+    updateMoney(field, key, next);
+  }, [updateMoney]);
+
+  const onRateChange = useCallback((e) => {
+    const n = e.target.valueAsNumber;
+    const next = Number.isNaN(n) ? 0 : n; // empty -> 0
+    update('interestRate', next);
+  }, [update]);
 
 
   return (
@@ -106,11 +115,11 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
         <InputBlock label='대출금'>
             <div className='inline-field'>
             <input
-                type="text"
-                inputMode="numeric"
+                type="number"
+                inputMode="decimal"
                 placeholder="0"
                 value={draft.loanPrice.amount}
-                onChange={e => updateMoney('loanPrice', 'amount', e.target.value)}
+                onChange={onNumChange('loanPrice', 'amount')}
             />
             <CategoryButton
                 items={unit.items}
@@ -124,11 +133,11 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
         <InputBlock label='이자율'>
             <div className='inline-field'>
             <input
-                type="text"
-                inputMode="numeric"
+                type="number"
+                inputMode="decimal"
                 placeholder="0"
                 value={draft.interestRate}
-                onChange={e => update('interestRate', e.target.value)}
+                onChange={onRateChange}
             />
             %
             <label className="toggle">
@@ -146,11 +155,11 @@ const LoanInfo = memo(function LoanInfo({ onComplete, onCancel }) {
         <InputBlock label='월 상환액'>
             <div className='inline-field'>
             <input
-                type="text"
-                inputMode="numeric"
+                type="number"
+                inputMode="decimal"
                 placeholder="0"
                 value={draft.repayment.amount}
-                onChange={e => updateMoney('repayment', 'amount', e.target.value)}
+                onChange={onNumChange('repayment', 'amount')}
             />
             <CategoryButton
                 items={unit.items}
