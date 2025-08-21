@@ -32,7 +32,6 @@ export default function SetupPersonal({onNext, onPrev}){
       size="large"
       value={personalList?.birth ?? null}
       onChange={handleBirthChange}
-      
     />
     <CategoryButton 
     items = {cat2.items}
