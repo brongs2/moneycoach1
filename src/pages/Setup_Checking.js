@@ -7,9 +7,9 @@ import { Fragment } from 'react';
 
 
 
-export default function SetupCheckAsset({onPrev, onNext}){
+export default function SetupCheckAsset({onPrev, onNext, type, setType}){
   const [selectedList, setSelectedList] = useState([]);
-
+  
   const toggleSelection = (title) => {
     if (selectedList.includes(title)) {
       // 이미 선택된 항목이면 제거
@@ -29,28 +29,39 @@ export default function SetupCheckAsset({onPrev, onNext}){
           title="저축"
           description="가지고 있는 현금, 예금 등의 현금성 자산"
           isSelected={selectedList.includes('저축')}
-          onClick={() => toggleSelection('저축')}
+          onClick={() => {
+            setType(type + 8);
+            toggleSelection('저축')}}
         />
         <AssetButton
           icon={<FaChartLine />}
           title="투자"
           description="주식, 부동산, 암호화폐 등 투자성 자산"
           isSelected={selectedList.includes('투자')}
-          onClick={() => toggleSelection('투자')}
+          onClick={() => {
+            setType(type + 4)
+            toggleSelection('투자')
+          }}
         />
         <AssetButton
           icon={<FaGem />}
           title="유형자산"
           description="보석, 미술품 등 실물 자산"
           isSelected={selectedList.includes('유형자산')}
-          onClick={() => toggleSelection('유형자산')}
+          onClick={() => {
+            setType(type + 2)
+            toggleSelection('유형자산')
+          }}
         />
         <AssetButton
           icon={<FaArrowDown />}
           title="부채"
           description="학자금 대출, 신용 대출 등 부채"
           isSelected={selectedList.includes('부채')}
-          onClick={() => toggleSelection('부채')}
+          onClick={() => {
+            setType(type + 1)
+            toggleSelection('부채')
+          }}
         />
          <div className="nav-buttons">
           <div className = 'goto-container'>

@@ -50,7 +50,11 @@ export default function DatePickerComponent({ title, size = 'large', value, onCh
         className={inputClass}
         wrapperClassName={wrapperClass}
         selected={value}
-        onChange={onChange}
+        onChange={v => {
+          console.log(v)
+          onChange(v)
+          console.log(value)
+        }}
         dateFormat="yyyy/MM/dd"
         placeholderText="날짜를 선택하세요"
       />

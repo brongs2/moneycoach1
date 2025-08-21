@@ -37,14 +37,14 @@ function SubmitStep({ onNext, onPrev }) {
 
 export default function Setup({ onNext, onPrev }) {
   const [step, setStep] = useState(0);
-
+  const [type, setType] = useState(0);
   return (
     <SetupDataProvider>
-      <div style={{ display: step === 0 ? 'block' : 'none' }}>
-        <SetupPersonal onNext={() => setStep(1)} onPrev={onPrev} />
+      <div style={{ display: step === 0 && type >> 3 === 1? 'block' : 'none' }}>
+        <SetupPersonal onNext={() => setStep(1)} onPrev={onPrev}  />
       </div>
       <div style={{ display: step === 1 ? 'block' : 'none' }}>
-        <SetupCheckAsset onNext={() => setStep(2)} onPrev={() => setStep(0)} />
+        <SetupCheckAsset onNext={() => setStep(2)} onPrev={() => setStep(0)} setType = {setType} />
       </div>
       <div style={{ display: step === 2 ? 'block' : 'none' }}>
         <Setupsaving onNext={() => setStep(3)} onPrev={() => setStep(1)} />
