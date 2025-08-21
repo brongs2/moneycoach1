@@ -66,8 +66,8 @@ export function useAllSetupData() {
     ? debt.map(({ id, ...rest }) => rest) 
     : debt; // debt가 배열인지 객체인지에 따라 조정
   return useMemo(
-    () => ({ personal,  saving, investment, asset, debt }),
-    [personal,  saving, investment, asset, debt]
+    () => ({ personal, saving: cleanSaving, investment: cleanInvestment, asset: cleanAsset, debt: cleanDebt }),
+    [personal, cleanSaving, cleanInvestment, cleanAsset, cleanDebt]
   );
 }
 
